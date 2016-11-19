@@ -1,9 +1,58 @@
+<!-- user login form and details This would go in the root path -->
+
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+
 	<title>Group Project</title>
 </head>
 <body>
-<p>This is my test case</p>
+<div class="container">
+	<form>
+
+	<div>
+		<label>
+			<input type="text" name="username" placeholder="username">
+		</label>
+	</div>
+
+	<div>
+		<label>
+			<input type="text" name="email" placeholder="email">
+		</label>
+	</div>
+
+	<div>
+		<label>
+			<input type="text" name="password" placeholder="password">
+		</label>
+	</div>
+
+  <div class="form-group">
+    <label for="exampleSelect1">Team Name</label>
+    <select class="form-control" id="teamSelection">
+      <option>Blue</option>
+      <option>Red</option>
+      <option>Yellow</option>
+      <option>Pink</option>
+      <option>Purple</option>
+    </select>
+  </div>
+  <button id ="submit" type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+
+<!-- jquery -->
+<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+<!-- js -->
+<script type="text/javascript" src="../script/script.js"></script>
+
+
+
 </body>
 </html>

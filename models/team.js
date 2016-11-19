@@ -9,8 +9,12 @@ module.exports = function(sequelize, DataTypes) {
         // associations can be defined here
 
          // Team.hasOne(models.Event);
-        Team.belongsToMany(models.Event, {through:'eventTeam'});
-
+        Team.belongsToMany(models.Event, {through:'eventTeam', onDelete: "CASCADE"
+          // foreignKey: {
+          //   allowNull: false
+          // }
+        });
+        // Team.hasMany(models.Event, {onDelete: "SET NULL", onUpdate: "CASCADE"});
       }
     }
   });

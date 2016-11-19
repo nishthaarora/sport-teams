@@ -40,6 +40,16 @@ module.exports = {
     })
   },
   down: function(queryInterface, Sequelize) {
-    return queryInterface.dropTable('Events');
+
+     queryInterface.sequelize.query(
+      'SET FOREIGN_KEY_CHECKS = 0;', {raw: true}
+    ).then(function(results){
+      queryInterface.sequelize.query(
+        'DROP TABLE IF EXISTS eventTeam'
+      )
+    })
+    .then(function(){
+      return queryInterface.dropTable('Events');
+    })
   }
 }
