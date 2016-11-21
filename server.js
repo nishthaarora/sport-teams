@@ -15,6 +15,8 @@ var app = express();
 var event_controller = require('./controller/events');
 var team_controller = require('./controller/team');
 
+//blocksheader from containing information about our server
+app.disable('x-powered-by');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
