@@ -17,20 +17,50 @@ var team_controller = require('./controller/team');
 
 //blocksheader from containing information about our server
 app.disable('x-powered-by');
+var user_controller = require('./controller/user')
+var html_routes = require('./controller/html-routes')
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.text());
 app.use(bodyParser.json({type:'application/vnd.api+json'}));
+app.use(express.static(process.cwd() + '/public'));
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'html');
 
 
-app.use('/', event_controller);
+app.use('/', html_routes);
+app.use('/login', user_controller);
+app.use('/events', event_controller);
 app.use('/teams', team_controller);
 
-models.sequelize.sync()
+models.sequelize.query('SET FOREIGN_KEY_CHECKS = 0');
+models.sequelize.sync();
+
+// .then(function() {
+
+// 	return models.Team.create(
+// 		{
+// 			Team_name: "blue",
+// 			Events: {
+// 				date: '2016/11/01',
+//         start_time: '16:50:00',
+//         end_time: '20:20:00',
+//         type: "game",
+//         score1: 0,
+//         score: 0,
+//         location: "william cannon"
+// 			}
+// 		},
+// 		{
+// 			include: [models.Event]
+// 		}
+// 	)
+// }).then(function(newTeam) {
+// 	console.log(newTeam);
+// })
+
 
 
 

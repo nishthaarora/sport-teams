@@ -17,7 +17,8 @@ module.exports = {
         type: "practice",
         score1: 0,
         score: 0,
-        location: "william cannon"
+        location: "william cannon",
+
       }, {
         date: '2016/11/16',
         start_time: '04:10:00',
@@ -25,7 +26,8 @@ module.exports = {
         type: "game",
         score1: 20,
         score: 16,
-        location: "pflugerville"
+        location: "pflugerville",
+
       }, {
          date: '2016/11/20',
         start_time: '1:50:00',
@@ -33,7 +35,8 @@ module.exports = {
         type: "game",
         score1: 100,
         score: 98,
-        location: "Rainy Street"
+        location: "Rainy Street",
+
       }]
 
     )
@@ -48,6 +51,7 @@ module.exports = {
       Example:
       return queryInterface.dropTable('users');
     */
+
     return Event.destroy({
       where:
        [
@@ -58,7 +62,8 @@ module.exports = {
         type: "practice",
         score1: 0,
         score: 0,
-        location: "william cannon"
+        location: "william cannon",
+        TeamId: 1
       }, {
          date: '2016/11/16',
         start_time: '04:10:00',
@@ -66,7 +71,8 @@ module.exports = {
         type: "game",
         score1: 20,
         score: 16,
-        location: "pflugerville"
+        location: "pflugerville",
+        TeamId: 3
       }, {
          date: '2016/11/20',
         start_time: '1:50:00',
@@ -74,7 +80,8 @@ module.exports = {
         type: "game",
         score1: 100,
         score: 98,
-        location: "Rainy Street"
+        location: "Rainy Street",
+        TeamId: 2
       }
       ]
 

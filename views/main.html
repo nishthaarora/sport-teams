@@ -1,3 +1,5 @@
+<!-- user login form and details This would go in the root path -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,89 +8,60 @@
   <title>BringTeam</title>
 
 <!Custom CSS styling-->
-  <link rel="stylesheet" href="assets/css/style.css">
-
-<!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
  
   
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+
+	<title>Group Project</title>
 </head>
 
 <body>
-<!--Nav Bar header -->
-    <div class="navbar navbar-static-top primaryNav" role="navigation">
-      <div class="container">
-          <div class="navbar-header">
-            <a class="navbar-brand" href="#">
-              <img src="assets/img/logoName.png" alt="BringTeam">
-            </a>
-          </div>
-          <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav pull-right">
-              <li> <a href="/login">Log In</a></li>
-              <li><a href="/signup">Sign-up</a></li>
-            </ul>
-          </div>
-      </div>
-    </div>    
+<div class="container">
+	<form>
 
-<!--Banner picture Main Header -->
-    <div class="container-fluid" id="index-banner">
-    <div id="imgContainer" >
-      <img src="assets/img/bannerHome.png" alt="Kids at play" class="img-responsive">
-      <a id="learnMore" class="btn btn-success btn-lg pull-right" role="button">Learn More</a>
-    </div>
-    </div>
+	<div>
+		<label>
+			<input type="text" name="username" placeholder="username">
+		</label>
+	</div>
 
-<!--Body text describing app's purpose -->
-    <div class="container">
-      <div class="row">
-        <br>
-        <h1 class="text-center"><font color="purple">Helping busy parents manage kid's sports activities!</font></h1>
-      </div>
-      <!--Icon section -->
-      <div class = "row">
-        <!--Team Roster -->
-        <div class="icon-section">
-          <div class= "col-lg-4 col-md-4 col-sm-6 col-xs-12">
-            <h3>TEAM ROSTER</h3>
-             <span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span>
-            <p class="text-center">View the team members and contact info</p>
-          </div>
-        </div>
-          <!--Practice and Game Schedules -->
-          <div class= "col-lg-4 col-md-4 col-sm-6 col-xs-12">
-            <h3>SCHEDULER</h3>
-            <p>Plan ahead with info about practice and games</p>
-          </div>
-          <!--Game Scores -->
-          <div class= "col-lg-4 col-md-4 col-sm-6 col-xs-12">
-            <h3>TEAM STATS</h3>
-            <p>Track wins and losses for the season</p>
-          </div>
-        </div>  <!--closes row -->
-      </div>    <!--closes section -->
-    </div>      <!--closes container -->
+	<div>
+		<label>
+			<input type="text" name="email" placeholder="email">
+		</label>
+	</div>
 
-  <!--Footer describing team developers -->
-    <div class="pageFooter">
-    <div class = "container">
-      2016, Made by Dream Team.  All rights reserved.</div>
-    </div>
+	<div>
+		<label>
+			<input type="text" name="password" placeholder="password">
+		</label>
+	</div>
 
+  <div class="form-group">
+    <label for="exampleSelect1">Team Name</label>
+    <select class="form-control" id="teamSelection">
+      <option>Blue</option>
+      <option>Red</option>
+      <option>Yellow</option>
+      <option>Pink</option>
+      <option>Purple</option>
+    </select>
+  </div>
+  <button id ="submit" type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
 
-
-
-
-
-
-<!-- Latest compiled and minified JavaScript -->
+<!-- jquery -->
 <script
   src="https://code.jquery.com/jquery-3.1.1.min.js"
   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
   crossorigin="anonymous"></script>
 
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<!-- js -->
+<script type="text/javascript" src="../script/script.js"></script>
+
+
 
 </body>
 </html>

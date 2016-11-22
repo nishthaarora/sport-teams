@@ -12,8 +12,8 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
-        Event.belongsToMany(models.Team, {through: 'eventTeam'});
-
+        Event.belongsToMany(models.Team, {through: 'eventTeam', onDelete: "CASCADE"});
+        // Event.hasMany(models.Team);
       }
     }
   });
