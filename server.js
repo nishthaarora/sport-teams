@@ -15,6 +15,9 @@ var app = express();
 
 var event_controller = require('./controller/events');
 var team_controller = require('./controller/team');
+
+//blocksheader from containing information about our server
+app.disable('x-powered-by');
 var user_controller = require('./controller/user')
 var html_routes = require('./controller/html-routes')
 
