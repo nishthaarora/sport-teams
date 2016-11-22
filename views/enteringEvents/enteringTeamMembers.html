@@ -1,3 +1,4 @@
+<!-- generating mysql data through this form -->
 <!DOCTYPE html>
 <html>
 	<head>
@@ -15,7 +16,6 @@
 	<body>
 		<a href="#menu-toggle" class="btn btn-default glyphicon glyphicon-menu-hamburger" id="menu-toggle">
 		</a>
-		<!-- login and signup button  -->
 		<div class= "loginBtn">
 			<button id="logIn" class="log-in">Log In</button>
 			<button id="signUp" class="sign-up">Sign Up</button>
@@ -40,16 +40,22 @@
 				</li>
 			</ul>
 		</div>
-		<!-- /#sidebar-wrapper -->
-		<!-- Page Content -->
 		<div id="page-content-wrapper">
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-lg-12">
-						<h1>About Us</h1>
-						<div class="row">
-							<p>If needed can write something about this app or about us</p>
-						</div>
+						<h1>Enter Team Members</h1>
+							<form>
+									<input type="text" name="First Name" placeholder="first name">
+									<input type="text" name="last Name" placeholder="last name">
+									<<input type="number" name="uniform" placeholder="uniform number">
+									<input type="text" name="email" placeholder="email">
+									<input type="text" name="password" placeholder="password">
+							</form>
+
+							</div>
+							<button id ="eventSubmit" type="submit" class="btn btn-primary">Submit</button>
+						</form>
 					</div>
 				</div>
 			</div>

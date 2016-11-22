@@ -10,6 +10,7 @@ var path = require('path');
 // and we bring in our models folder. This brings in the model's object, as defined in index.js
 var models = require('./models');
 
+
 var app = express();
 
 var event_controller = require('./controller/events');

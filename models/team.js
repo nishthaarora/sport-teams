@@ -10,9 +10,8 @@ module.exports = function(sequelize, DataTypes) {
 
          // Team.hasOne(models.Event);
         Team.belongsToMany(models.Event, {through:'eventTeam', onDelete: "CASCADE"
-          // foreignKey: {
-          //   allowNull: false
-          // }
+        });
+        Team.belongsToMany(models.teamMembers, {through:'eventTeam', onDelete: "CASCADE"
         });
         // Team.hasMany(models.Event, {onDelete: "SET NULL", onUpdate: "CASCADE"});
       }
