@@ -1,23 +1,150 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>events</title>
+	<head>
+		<title>events</title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+		<!-- Bootstrap Stylesheet -->
+		<link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+		<!-- sidebar stylesheet -->
+		<link href="../assets/css/simple-sidebar.css" rel="stylesheet">
+		<!-- internal stylesheet -->
+		<link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+	</head>
+	<body>
+		<a href="#menu-toggle" class="btn btn-default glyphicon glyphicon-menu-hamburger" id="menu-toggle">
+		</a>
+		<!-- login and signup button  -->
+		<div class= "loginBtn">
+			<button id="logIn" class="log-in">Log In</button>
+			<button id="signUp" class="sign-up">Sign Up</button>
+		</div>
+	</div>
+	<div id="wrapper">
+		<!-- Sidebar -->
+		<div id="sidebar-wrapper">
+			<ul class="sidebar-nav">
+				<li class="sidebar-brand">
+					<a href="#">
+					</a>
+				</li>
+				<li>
+					<a href="/">Home/About Us</a>
+				</li>
+				<li>
+					<a href="/events">Events</a>
+				</li>
+				<li>
+					<a href="/input">Enter New Events</a>
+				</li>
+			</ul>
+		</div>
+		<!-- /#sidebar-wrapper -->
+		<!-- header -->
+		<!-- Anchor tabls to display all events and team events -->
+		<div class="navbar header">
 
-</head>
-<body>
-<div>
-	All the events would be shown here
-</div>
+<!-- 			<div class="dropdown">
+    		<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">All Events
+    			<span class="caret"></span></button>
+    				<ul id=gameList class="dropdown-menu">
+								<li><a href="api/all/game">Football</a></li>
+				  			<li><a href="api/all/game">Baseball</a></li>
+					      <li><a href="api/all/game">Basketball</a></li>
+					      <li><a href="api/all/game">Tennie</a></li>
+					      <li><a href="api/all/game">Hockey</a></li>
+					      <li><a href="api/all/game">Cycle</a></li>
 
+				    </ul>
+  		</div>
+ -->
+
+ 			<a id="allEvents" class="displayEvents" href="events/api/all">Team Events</a>
+			<a id="teamEvents" class="displayEvents" href="events/api/team">Team Events</a>
+		</div>
+		<!-- /header -->
+		<!-- using handlebars  displaying events on the basis of link clicked-->
+		<div class="events hidden">
+			{{#each events}}
+			<li>
+				{{Team_name}}
+			</li>
+			{{#each Events}}
+			<li>
+				{{date}},{{start_time}},{{end_time}},{{type}},{{score1}},{{score}},{{location}}
+			</li>
+			{{/each}}
+			{{/each}}
+		</div>
+		<!-- Page Content displaying pictures of all the events-->
+		<div id="page-content-wrapper">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-12">
+						<h1>All Events</h1>
+						<div class="row pageContent">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /#page-content-wrapper -->
+	</div>
+	<!-- /#wrapper -->
+	<hr>
+	<!-- Pagination -->
+	<div class="row text-center">
+		<div class="col-lg-12">
+			<ul class="pagination">
+				<li>
+					<a href="#">&laquo;</a>
+				</li>
+				<li class="active">
+					<a href="#">1</a>
+				</li>
+				<li>
+					<a href="#">2</a>
+				</li>
+				<li>
+					<a href="#">3</a>
+				</li>
+				<li>
+					<a href="#">4</a>
+				</li>
+				<li>
+					<a href="#">5</a>
+				</li>
+				<li>
+					<a href="#">&raquo;</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+<!-- modal settings -->
+<div id="infoModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Today's Events</h4>
+      </div>
+      <div id = "modalBody" class="modal-body">
+        <p>&hellip;</p>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+	<!-- jquery -->
+	<script type="text/javascript" src="/script/jquery.js"></script>
+	<!-- handlebars cdn -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>
+	<!-- bootstrap stylesheet -->
+	<script type="text/javascript" src="/script/bootstrap.min.js"></script>
+	<!-- js -->
+	<script type="text/javascript" src="/script/script.js">
+	</script>
 </body>
 </html>
-<script
-  src="https://code.jquery.com/jquery-3.1.1.min.js"
-  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-  crossorigin="anonymous"></script>
-
-<script type="text/javascript">
-
-
-
-</script>

@@ -17,6 +17,10 @@ module.exports = {
         Team_name: "blue"
       }, {
         Team_name: "yellow"
+      }, {
+        Team_name: "pink"
+      }, {
+        Team_name: "purple"
       }]
 
     )
@@ -36,7 +40,9 @@ module.exports = {
         Team_name: [
       "red",
       "blue",
-      "yellow"
+      "yellow",
+      "pink",
+      "purple"
       ]
     }
   })

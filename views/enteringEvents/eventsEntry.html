@@ -1,86 +1,141 @@
 <!-- generating mysql data through this form -->
-
 <!DOCTYPE html>
 <html>
-<head>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
-<link rel="stylesheet" type="text/css" href="../assets/css/style.css">
-
-	<title>Events entry</title>
-</head>
-<body>
-<div class="container">
-	<form class="eventForm">
-
-	<div>
-		<label>
-			<input id="date" type="date" name="date" placeholder="date">
-		</label>
+	<head>
+		<title>events</title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+		<!-- Bootstrap Stylesheet -->
+		<link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+		<!-- sidebar stylesheet -->
+		<link href="../assets/css/simple-sidebar.css" rel="stylesheet">
+		<!-- internal stylesheet -->
+		<link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+	</head>
+	<body>
+		<a href="#menu-toggle" class="btn btn-default glyphicon glyphicon-menu-hamburger" id="menu-toggle">
+		</a>
+		<div class= "loginBtn">
+			<button id="logIn" class="log-in">Log In</button>
+			<button id="signUp" class="sign-up">Sign Up</button>
+		</div>
 	</div>
+	<div id="wrapper">
+		<!-- Sidebar -->
+		<div id="sidebar-wrapper">
+			<ul class="sidebar-nav">
+				<li class="sidebar-brand">
+					<a href="#">
+					</a>
+				</li>
+				<li>
+					<a href="/">Home/About Us</a>
+				</li>
+				<li>
+					<a href="/events">Events</a>
+				</li>
+				<li>
+					<a href="/input">Enter New Events</a>
+				</li>
+			</ul>
+		</div>
+		<div id="page-content-wrapper">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-12">
+						<h1>Enter New Event</h1>
+						<form class="eventForm" method="POST" action="events/api/input">
+							<div>
+								<label>
+									<input id="date" type="date" name="date" placeholder="date">
+								</label>
+							</div>
+							<div>
+								<label>
+									start time
+									<input id="startTime" type="time" name="start_time" placeholder="start_time">
+								</label>
+							</div>
+							<div>
+								<label>
+									end time
+									<input id="endTIme" type="time" name="end_time" placeholder="end_time">
+								</label>
+							</div>
+								<div class="form-group">
+								<label for="exampleSelect1">Event Type</label>
+								<select class="form-control" id="game" name="type">
+									<option>Football</option>
+									<option>Baseball</option>
+									<option>Basketball</option>
+									<option>Tennis</option>
+									<option>Hockey</option>
+								</select>
+							</div>
 
-	<div>
-		<label>
-			<input id="startTime" type="time" name="start_time" placeholder="start_time">
-		</label>
+							<div class="form-group">
+								<label for="exampleSelect1">Event Type</label>
+								<select class="form-control" id="eventType" name="type">
+									<option>Practice</option>
+									<option>Game</option>
+								</select>
+							</div>
+							<div>
+								<label>
+									<input id="score1" type="integer" name="score1" placeholder="Score for team 1">
+								</label>
+							</div>
+							<div>
+								<label>
+									<input id="score2" type="integer" name="score" placeholder="Score for team 2">
+								</label>
+							</div>
+							<div>
+								<label>
+									<input id="location" type="text" name="location" placeholder="Location of the event">
+								</label>
+								<br>
+									<label>
+									<textarea id="comment" type="text" name="comment" placeholder="Additional comments"></textarea>
+								</label>
+							</div>
+							<div class="form-group">
+								<label for="exampleSelect1">Team Name</label>
+								<select class="form-control" id="associatedTeam" name="team">
+									<option>Blue</option>
+									<option>Red</option>
+									<option>Yellow</option>
+									<option>Pink</option>
+									<option>Purple</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="exampleSelect1">Team Name</label>
+								<select class="form-control" id="associatedTeam2" name="team">
+									<option>Blue</option>
+									<option>Red</option>
+									<option>Yellow</option>
+									<option>Pink</option>
+									<option>Purple</option>
+								</select>
+							</div>
+							<button id ="eventSubmit" type="submit" class="btn btn-primary">Submit</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
-
-	<div>
-		<label>
-			<input id="endTIme" type="time" name="end_time" placeholder="end_time">
-		</label>
-	</div>
-
-<div class="form-group">
-    <label for="exampleSelect1">Event Type</label>
-    <select class="form-control" id="eventType" name="type">
-      <option>Practice</option>
-      <option>Game</option>
-    </select>
-  </div>
-
-	<div>
-		<label>
-			<input id="score1" type="integer" name="score1" placeholder="Score for team 1">
-		</label>
-	</div>
-
-	<div>
-		<label>
-			<input id="score2" type="integer" name="score" placeholder="Score for team 2">
-		</label>
-	</div>
-
-
-	<div>
-		<label>
-			<input id="location" type="text" name="location" placeholder="Location of the event">
-		</label>
-	</div>
-	  <div class="form-group">
-    <label for="exampleSelect1">Team Name</label>
-    <select class="form-control" id="associatedTeam" name="team">
-      <option>Blue</option>
-      <option>Red</option>
-      <option>Yellow</option>
-      <option>Pink</option>
-      <option>Purple</option>
-    </select>
-  </div>
-
-  <button id ="eventSubmit" type="submit" class="btn btn-primary">Submit</button>
-</form>
-</div>
-
-
-<!-- jquery -->
-<script
-  src="https://code.jquery.com/jquery-3.1.1.min.js"
-  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-  crossorigin="anonymous"></script>
-<!-- js -->
-<script type="text/javascript" src="../script/script.js"></script>
-
-
-
+	<script type="text/javascript" src="/script/jquery.js"></script>
+	<!-- handlebars cdn -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>
+	<!-- bootstrap stylesheet -->
+	<script type="text/javascript" src="/script/bootstrap.min.js"></script>
+	<!-- js -->
+	<script type="text/javascript" src="/script/script.js">
+	</script>
+</body>
+</html>
 </body>
 </html>
