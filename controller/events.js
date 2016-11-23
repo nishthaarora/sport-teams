@@ -58,7 +58,6 @@ router.get('/api/:game', function(req, res) {
 	*/
 router.post('/api/input', function(req, res) {
 	var newEvent = req.body;
-	// console.log(newEvent)
 
 	getTeamId(newEvent)
 		.then(function(data) {
@@ -93,41 +92,7 @@ router.post('/api/input', function(req, res) {
 			})
 		})
 		res.send('success');
-		// res.redirect('events/api/getevents');
 })
-
-
-// 2nd trial by creating teams and events together
-// return models.Team.findOne({
-// 	where: {
-// 		team_name: newEvent.team
-// 	}
-// }).then(function(data) {
-// 	if (data) {
-// 		return console.log('it exist')
-// 	} else {
-// 		return models.Team.create({
-// 			Team_name: newEvent.team,
-// 			Events: {
-// 				date: newEvent.date,
-// 				start_time: newEvent.start_time,
-// 				end_time: newEvent.end_time,
-// 				type: newEvent.type,
-// 				score1: newEvent.score1,
-// 				score: newEvent.score,
-// 				location: newEvent.location,
-// 			}
-// 		}, {
-// 			include: [models.Event]
-// 		}).then(function(data) {
-
-// 		})
-// 	// }
-// })
-
-
-// })
-
 
 function getTeamId(event) {
 	return models.Team.findAll({

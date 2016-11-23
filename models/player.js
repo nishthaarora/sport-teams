@@ -1,8 +1,9 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var teamMembers = sequelize.define('teamMembers', {
+  var Player = sequelize.define('Player', {
     fname: DataTypes.STRING,
     lname: DataTypes.STRING,
+    team: DataTypes.STRING,
     uniformNum: DataTypes.INTEGER,
     email: DataTypes.STRING,
     password: DataTypes.STRING
@@ -10,9 +11,9 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
-           teamMembers.hasOne(models.Team);
+        Player.belongsTo(models.Team)
       }
     }
   });
-  return teamMembers;
+  return Player;
 };

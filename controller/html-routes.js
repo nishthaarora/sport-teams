@@ -14,6 +14,7 @@ router.get('/', function(req, res) {
 	})
 
 
+// add team players form
 	router.get('/addplayers', function(req, res) {
 		res.sendFile(path.join(__dirname + '/../views/enteringEvents/enteringTeamMembers.html'));
 	})
@@ -24,9 +25,14 @@ router.get('/', function(req, res) {
 		res.sendFile(path.join(__dirname + '/../views/events/events.html'));
 	})
 
+// sign-in
 	router.get('/signin', function(req, res) {
 		res.sendFile(path.join(__dirname + '/../views/user/signIn.html'));
 	})
 
+// sign-up
+	router.get('/signup', function(req, res) {
+		res.sendFile(path.join(__dirname + '/../views/user/signup.html'));
+	})
 
 module.exports = router;

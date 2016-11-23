@@ -20,7 +20,6 @@
 			<button id="logIn" class="log-in">Log In</button>
 			<button id="signUp" class="sign-up">Sign Up</button>
 		</div>
-		<button id="signOut" class="sign-out">Sign Out</button>
 	</div>
 	<div id="wrapper">
 		<!-- Sidebar -->
@@ -45,14 +44,24 @@
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-lg-12">
-						<h1>Enter Team Members</h1>
-							<form action="teams/api/addplayers" method="POST">
-									<input id="fName" type="text" name="First Name" placeholder="first name">
-									<input id="lName" type="text" name="last Name" placeholder="last name">
-									<input id="uniformNum" type="number" name="uniform" placeholder="uniform number">
+						<h1>Sign Up</h1>
+							<form action="/users/create" method="POST">
+
+									<div class="form-group">
+								    <label for="fName">First Name:</label>
+								    <input type="text" id="firstName" name="firstName">
+								  </div>
+
+
+									<div class="form-group">
+								    <label for="lName">Last Name:</label>
+								    <input type="text" id="lastName" name="lastName">
+								  </div>
+
+
 									<div class="form-group">
 								<label for="exampleSelect1">Team Name</label>
-								<select class="form-control" id="playerTeam" name="team">
+								<select class="form-control" id="teamPlayer" name="team">
 									<option>Blue</option>
 									<option>Red</option>
 									<option>Yellow</option>
@@ -61,10 +70,26 @@
 								</select>
 							</div>
 
+
+									<div class="form-group">
+								    <label for="uniform">uniform number:</label>
+								    <input type="number" id="uniformNumber" name="uniform">
+								  </div>
+
+									 <div class="form-group">
+								    <label for="em">Email:</label>
+								    <input type="text" id="em" name="email">
+								  </div>
+
+									<div class="form-group">
+								    <label for="pass">Password:</label>
+								    <input type="password" id="pass" name="password">
+								  </div>
+
 							</form>
 
 							</div>
-							<button id ="playerSubmit" type="submit" class="btn btn-primary">Submit</button>
+							<button id ="userSignUp" type="submit" class="btn btn-primary">SignUp</button>
 						</form>
 					</div>
 				</div>
