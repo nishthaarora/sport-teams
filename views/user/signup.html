@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>events</title>
+		<title>Sign-up - BringTeam</title>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
@@ -14,52 +14,48 @@
 		<link rel="stylesheet" type="text/css" href="../assets/css/style.css">
 	</head>
 	<body>
-		<a href="#menu-toggle" class="btn btn-default glyphicon glyphicon-menu-hamburger" id="menu-toggle">
-		</a>
-		<div class= "loginBtn">
-			<button id="logIn" class="log-in">Log In</button>
-			<button id="signUp" class="sign-up">Sign Up</button>
-		</div>
-	</div>
-	<div id="wrapper">
-		<!-- Sidebar -->
-		<div id="sidebar-wrapper">
-			<ul class="sidebar-nav">
-				<li class="sidebar-brand">
-					<a href="#">
+		<!--Nav Bar header -->
+		<div class="navbar navbar-static-top primaryNav" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="#">
+						<img src="assets/images/logoName.png" alt="BringTeam">
 					</a>
-				</li>
-				<li>
-					<a href="/">Home/About Us</a>
-				</li>
-				<li>
-					<a href="/events">Events</a>
-				</li>
-				<li>
-					<a href="/input">Enter New Events</a>
-				</li>
-			</ul>
+				</div>
+				<div class="collapse navbar-collapse">
+					<ul class="nav navbar-nav pull-right">
+						<li> <a href="/">Home</a></li>
+						<li><a href="/signin">Log In</a></li>
+					</ul>
+				</div>
+			</div>
 		</div>
-		<div id="page-content-wrapper">
-			<div class="container-fluid">
+		<!--Main header announcing action of page -->
+		<div class="mainHeader">
+			<div class="container">
 				<div class="row">
-					<div class="col-lg-12">
-						<h1>Sign Up</h1>
-							<form action="/users/create" method="POST">
-
-									<div class="form-group">
-								    <label for="fName">First Name:</label>
-								    <input type="text" id="firstName" name="firstName">
-								  </div>
-
-
-									<div class="form-group">
-								    <label for="lName">Last Name:</label>
-								    <input type="text" id="lastName" name="lastName">
-								  </div>
-
-
-									<div class="form-group">
+					<div class="col-12">
+						<h1>Create Your BringTeam Account</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--Sign in form -->
+		<div id="signupPage" class="container">
+			<div class = "row">
+				<div class="col-xs-6 col-xs-offset-3"></div>
+				<div class="col-xs-6 col-xs-offset-3">
+					<div class="logSite">
+						<form action="/users/create" method="POST">
+							<div class="form-group">
+								<label for="fName">First Name:</label>
+								<input type="text" id="firstName" name="firstName">
+							</div>
+							<div class="form-group">
+								<label for="lName">Last Name:</label>
+								<input type="text" id="lastName" name="lastName">
+							</div>
+							<div class="form-group">
 								<label for="exampleSelect1">Team Name</label>
 								<select class="form-control" id="teamPlayer" name="team">
 									<option>Blue</option>
@@ -69,41 +65,65 @@
 									<option>Purple</option>
 								</select>
 							</div>
-
-
-									<div class="form-group">
-								    <label for="uniform">uniform number:</label>
-								    <input type="number" id="uniformNumber" name="uniform">
-								  </div>
-
-									 <div class="form-group">
-								    <label for="em">Email:</label>
-								    <input type="text" id="em" name="email">
-								  </div>
-
-									<div class="form-group">
-								    <label for="pass">Password:</label>
-								    <input type="password" id="pass" name="password">
-								  </div>
-
-							</form>
-
+							<div class="form-group">
+								<label for="uniform">uniform number:</label>
+								<input type="number" id="uniformNumber" name="uniform">
 							</div>
-							<button id ="userSignUp" type="submit" class="btn btn-primary">SignUp</button>
+							<div class="form-group">
+								<label for="em">Email</label>
+								<input id="em" name="email" type="text" class="form-control input-lg">
+							</div>
+							<div class="form-group">
+								<label for="pass">Password</label>
+								<input id="pass" name="password" type="password" class="form-control input-lg">
+							</div>
 						</form>
 					</div>
-				</div>
+					<div class="form-group clearfix">
+						<button id="userSignUp" class="pull-right btn btn-success loginBtn" type="submit" data-loading-text="Log in">Create Account</button>
+					</div>
+				</form>
+				<p class="noAccount">Already have a BringTeam account?
+					<a href="/signin">Log In</a>
+				</p>
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript" src="/script/jquery.js"></script>
-	<!-- handlebars cdn -->
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>
-	<!-- bootstrap stylesheet -->
-	<script type="text/javascript" src="/script/bootstrap.min.js"></script>
-	<!-- js -->
-	<script type="text/javascript" src="/script/script.js">
-	</script>
+</div>
+</div>
+<!--BringTeam Site Stats -->
+<div class="footer-stats">
+<div class="container">
+	<div class="row">
+		<div class="col-xs-3">
+			<span class="fact">238</span>
+			<div class="fact-name"># of teams enrolled</div>
+		</div>
+		<div class="col-xs-3">
+			<span class="fact">1,867</span>
+			<div class="fact-name"># of players</div>
+		</div>
+		<div class="col-xs-3">
+			<span class="fact">4,760</span>
+			<div class="fact-name"># of upcoming events</div>
+		</div>
+	</div>
+</div>
+</div>
+<!--Footer describing team developers -->
+<div class="pageFooter">
+<div class = "container">
+Copywrite: 2016, Made by Dream Team.  All rights reserved.</div>
+</div>
+<!--  -->
+<script type="text/javascript" src="/script/jquery.js"></script>
+<!-- handlebars cdn -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>
+<!-- bootstrap stylesheet -->
+<script type="text/javascript" src="/script/bootstrap.min.js"></script>
+<!-- js -->
+<script type="text/javascript" src="/script/script.js">
+</script>
 </body>
 </html>
 </body>

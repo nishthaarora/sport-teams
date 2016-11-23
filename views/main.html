@@ -13,8 +13,17 @@
 		<link rel="stylesheet" type="text/css" href="../assets/css/style.css">
 	</head>
 	<body>
-		<a href="#menu-toggle" class="btn btn-default glyphicon glyphicon-menu-hamburger" id="menu-toggle">
-		</a>
+
+<!--Nav Bar header -->
+    <div class="navbar navbar-static-top primaryNav" role="navigation">
+      <div class="container">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">
+              <img src="assets/images/logoName.png" alt="BringTeam">
+            </a>
+          </div>
+
+
 		<!-- login and signup button  -->
 		<div class= "loginBtn">
 			<button id="logIn" class="log-in">Log In</button>
@@ -22,40 +31,59 @@
 		</div>
 		<button id="signOut" class="sign-out">Sign Out</button>
 	</div>
-	<div id="wrapper">
-		<!-- Sidebar -->
-		<div id="sidebar-wrapper">
-			<ul class="sidebar-nav">
-				<li class="sidebar-brand">
-					<a href="#">
-					</a>
-				</li>
-				<li>
-					<a href="/">Home/About Us</a>
-				</li>
-				<li>
-					<a href="/events">Events</a>
-				</li>
-				<li>
-					<a href="/input">Enter New Events</a>
-				</li>
-			</ul>
-		</div>
-		<!-- /#sidebar-wrapper -->
-		<!-- Page Content -->
-		<div id="page-content-wrapper">
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-lg-12">
-						<h1>About Us</h1>
-						<div class="row">
-							<p>If needed can write something about this app or about us</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+
+<!--Banner picture Main Header -->
+    <div class="container-fluid" id="index-banner">
+    <div id="imgContainer" >
+      <img src="assets/images/bannerHome.png" alt="Kids at play" class="img-responsive">
+      <!--a id="learnMore" class="btn btn-success btn-lg pull-right" role="button">Learn More</a -->
+    </div>
+    </div>
+
+<!--Body text describing app's purpose -->
+    <div class="container">
+      <div class="row">
+        <br>
+        <h1 class="page-center"><font color="purple">Helping busy parents manage kid's sports activities!</font></h1>
+      </div>
+      <!--Icon section -->
+      <div class = "row">
+        <!--Team Roster -->
+        <div class="icon-section">
+          <div class= "col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <h3 class="text-center"><span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span>  TEAM ROSTER</h3>
+             <h4 class="text-center">View team members and contact info</h4><br>
+          </div>
+        </div>
+          <!--Practice and Game Schedules -->
+          <div class="icon-section">
+          <div class= "col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <h3 class="text-center"><span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span>  SCHEDULER</h3>
+             <h4 class="text-center">Manage practices and game events</h4><br>
+          </div>
+        </div>
+          <!--Game Scores -->
+          <div class="icon-section">
+          <div class= "col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <h3 class="text-center"><span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span>  GAME STATS</h3>
+             <h4 class="text-center">Track wins and losses in the season</h4><br>
+          </div>
+        </div>
+        </div>  <!--closes row -->
+      </div>    <!--closes section -->
+    </div>      <!--closes container -->
+
+  <!--Footer describing team developers -->
+    <div class="pageFooter">
+    <div class = "container">
+      2016, Made by Dream Team.  All rights reserved.</div>
+    </div>
+
+
+
+
+
+
 	<script type="text/javascript" src="/script/jquery.js"></script>
 	<!-- handlebars cdn -->
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>

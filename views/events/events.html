@@ -13,125 +13,83 @@
 		<link rel="stylesheet" type="text/css" href="../assets/css/style.css">
 	</head>
 	<body>
-		<a href="#menu-toggle" class="btn btn-default glyphicon glyphicon-menu-hamburger" id="menu-toggle">
-		</a>
 		<!-- login and signup button  -->
-		<div class= "loginBtn">
-			<button id="logIn" class="log-in">Log In</button>
-			<button id="signUp" class="sign-up">Sign Up</button>
-		</div>
-		<button id="signOut" class="sign-out">Sign Out</button>
-	</div>
-	<div id="wrapper">
-		<!-- Sidebar -->
-		<div id="sidebar-wrapper">
-			<ul class="sidebar-nav">
-				<li class="sidebar-brand">
-					<a href="#">
+		<!--Nav Bar header -->
+		<div class="navbar navbar-static-top primaryNav" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="#">
+						<img src="assets/images/logoName.png" alt="BringTeam">
 					</a>
-				</li>
-				<li>
-					<a href="/">Home/About Us</a>
-				</li>
-				<li>
-					<a href="/events">Events</a>
-				</li>
-				<li>
-					<a href="/input">Enter New Events</a>
-				</li>
-			</ul>
-		</div>
-		<!-- /#sidebar-wrapper -->
-		<!-- header -->
-		<!-- Anchor tabls to display all events and team events -->
-		<div class="navbar header">
-
-
- 			<a id="allEvents" class="displayEvents" href="events/api/all">Team Events</a>
-			<a id="teamEvents" class="displayEvents" href="events/api/team">Team Events</a>
-		</div>
-		<!-- /header -->
-		<!-- using handlebars  displaying events on the basis of link clicked-->
-		<div class="events hidden">
-			{{#each events}}
-			<li>
-				{{Team_name}}
-			</li>
-			{{#each Events}}
-			<li>
-				{{date}},{{start_time}},{{end_time}},{{type}},{{score1}},{{score}},{{location}}
-			</li>
-			{{/each}}
-			{{/each}}
-		</div>
-		<!-- Page Content displaying pictures of all the events-->
-		<div id="page-content-wrapper">
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-lg-12">
-						<h1>All Events</h1>
-						<div class="row pageContent">
-						</div>
-					</div>
 				</div>
+
+				<div class= "loginBtn">
+					<button id="logIn" class="log-in">Log In</button>
+					<button id="signUp" class="sign-up">Sign Up</button>
+				</div>
+				<button id="signOut" class="sign-out">Sign Out</button>
 			</div>
-		</div>
-		<!-- /#page-content-wrapper -->
-	</div>
-	<!-- /#wrapper -->
-	<hr>
-	<!-- Pagination -->
-	<div class="row text-center">
-		<div class="col-lg-12">
-			<ul class="pagination">
-				<li>
-					<a href="#">&laquo;</a>
-				</li>
-				<li class="active">
-					<a href="#">1</a>
-				</li>
-				<li>
-					<a href="#">2</a>
-				</li>
-				<li>
-					<a href="#">3</a>
-				</li>
-				<li>
-					<a href="#">4</a>
-				</li>
-				<li>
-					<a href="#">5</a>
-				</li>
-				<li>
-					<a href="#">&raquo;</a>
-				</li>
-			</ul>
-		</div>
-	</div>
+			<div class="mainHeader" role="banner">
+				<div class="container">
+					<div class="row">
+						<div class="col-4">
+							<a class="homeLink"  role="navigation" href="teamIndex.html"><span class="glyphicon glyphicon-home"></span></a>
+							<a id="allEvents" class="displayEvents" href="events/api/all">Team Schedules</a>
+							|
+							<a id="allEvents" class="displayEvents" href="events/api/all">Team Roster</a>
+							|
+							<a id="newEvent" class="new-event" href="/input">Enter new events</a>
+							|
+							<a id="enterPlayer" class="enter-player" href="/addplayers">Add players</a>
+						</div>
+						</div>
+						</div>
+						</div>
+						</div>
+						<!-- /header -->
+						<!-- using handlebars  displaying events on the basis of link clicked-->
+						<div class="events hidden">
+							{{#each events}}
+							<li>
+								{{Team_name}}
+							</li>
+							{{#each Events}}
+							<li>
+								{{date}},{{start_time}},{{end_time}},{{type}},{{score1}},{{score}},{{location}}
+							</li>
+							{{/each}}
+							{{/each}}
+						</div>
+						<!-- Page Content displaying pictures of all the events-->
+						<div id="page-content-wrapper">
+							<div class="container-fluid">
+								<div class="row">
+									<div class="col-lg-12">
+										<h1>All Events</h1>
+										<div class="row pageContent">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 
-<!-- modal settings -->
-<div id="infoModal" class="modal fade" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Today's Events</h4>
-      </div>
-      <div id = "modalBody" class="modal-body">
-        <p>&hellip;</p>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+<!--Footer describing team developers -->
+    <div class="pageFooter">
+    <div class = "container">
+      Copywrite: 2016, Made by Dream Team.  All rights reserved.</div>
+    </div>
 
-	<!-- jquery -->
-	<script type="text/javascript" src="/script/jquery.js"></script>
-	<!-- handlebars cdn -->
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>
-	<!-- bootstrap stylesheet -->
-	<script type="text/javascript" src="/script/bootstrap.min.js"></script>
-	<!-- js -->
-	<script type="text/javascript" src="/script/script.js">
-	</script>
-</body>
-</html>
+
+
+
+								<!-- jquery -->
+								<script type="text/javascript" src="/script/jquery.js"></script>
+								<!-- handlebars cdn -->
+								<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>
+								<!-- bootstrap stylesheet -->
+								<script type="text/javascript" src="/script/bootstrap.min.js"></script>
+								<!-- js -->
+								<script type="text/javascript" src="/script/script.js">
+								</script>
+							</body>
+						</html>
