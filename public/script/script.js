@@ -24,7 +24,7 @@ $('#userSignIn').on('click', function(evt) {
 	$.post('/users/login', existingUser)
 		.done(function(response) {
 			if (response.success) {
-				window.location.href = '/';
+				window.location.href = '/events';
 			}
 		});
 })
@@ -62,36 +62,6 @@ $('#userSignUp').on('click', function(evt) {
 				window.location.href = '/';
 			});
 	})
-
-
-
-// creating items in event page according to the games
-games.forEach(function(ele, index) {
-	var createDiv = $('<div class="col-md-3 portfolio-item">');
-	var anchor = $('<a href="events/api/game">');
-	createDiv.append(anchor);
-	var eventTye = $('<p class="gameName">' + ele + '</p>')
-	anchor.append(eventTye);
-	var image = $('<img class="img-responsive" id="img-' + index + '"' + '>');
-	anchor.append(image);
-	image.attr('src', '../assets/images/' + index + '.jpg');
-	$('.pageContent').append(createDiv);
-})
-
-// after creating items on events page then opening up a modal to display today's events
-//displaying modal
-$('.img-responsive').on('click', function(evt) {
-	evt.preventDefault();
-	var game = $(this).parent('a').children('p').text();
-	console.log(game);
-	$.get('events/api/' + game, function() {})
-
-	// var modalBody = $(this).parent('div').children('span').children('p').text();
-	// $('.modal-body').text(modalTitle);
-
-	$('#infoModal').modal('toggle');
-
-})
 
 
 /* on click of a. all events link which is present in events route user can see all the existing events
@@ -185,10 +155,3 @@ if (getCookie('user_name')) {
 		$('#signOut').show()
 	}
 }
-
-
-// function delete_cookie(name) {
-//   document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
-// }
-
-// delete_cookie('user_name');
