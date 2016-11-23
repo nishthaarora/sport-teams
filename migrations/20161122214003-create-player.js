@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: function(queryInterface, Sequelize) {
-    return queryInterface.createTable('teamMembers', {
+    return queryInterface.createTable('Players', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -12,6 +12,9 @@ module.exports = {
         type: Sequelize.STRING
       },
       lname: {
+        type: Sequelize.STRING
+      },
+      team: {
         type: Sequelize.STRING
       },
       uniformNum: {
@@ -34,6 +37,15 @@ module.exports = {
     });
   },
   down: function(queryInterface, Sequelize) {
-    return queryInterface.dropTable('teamMembers');
+     queryInterface.sequelize.query(
+      'SET FOREIGN_KEY_CHECKS = 0;', {raw: true}
+    ).then(function(results){
+      queryInterface.sequelize.query(
+        'DROP TABLE IF EXISTS playerTeam'
+      )
+    })
+    .then(function(){
+      return queryInterface.dropTable('Players');
+    })
   }
 };

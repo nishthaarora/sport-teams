@@ -18,3 +18,13 @@
 .hidden {
 	display: none;
 }
+.user-name{
+	float: right;
+	display: inline-block;
+}
+
+.sign-out {
+	display: none;
+	float: right;
+}
+

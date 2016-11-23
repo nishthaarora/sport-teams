@@ -12,15 +12,15 @@ module.exports = {
       return queryInterface.createTable('users', { id: Sequelize.INTEGER });
     */
     return Team.bulkCreate([{
-        Team_name: "red"
+        Team_name: "Red"
       }, {
-        Team_name: "blue"
+        Team_name: "Blue"
       }, {
-        Team_name: "yellow"
+        Team_name: "Yellow"
       }, {
-        Team_name: "pink"
+        Team_name: "Pink"
       }, {
-        Team_name: "purple"
+        Team_name: "Purple"
       }]
 
     )
@@ -38,11 +38,11 @@ module.exports = {
      return Team.destroy({
       where: {
         Team_name: [
-      "red",
-      "blue",
-      "yellow",
-      "pink",
-      "purple"
+      "Red",
+      "Blue",
+      "Yellow",
+      "Pink",
+      "Purple"
       ]
     }
   })

@@ -1,5 +1,5 @@
 'use strict';
-var Team = require('../models')['Event'];
+var Events = require('../models')['Event'];
 
 module.exports = {
   up: function (queryInterface, Sequelize) {
