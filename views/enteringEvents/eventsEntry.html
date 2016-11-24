@@ -84,16 +84,17 @@
 							</div>
 							<div>
 								<label>
-									<input id="score1" type="integer" name="score1" placeholder="Score for team 1">
+									<input id="score1" class="hidden" type="integer" name="score1" placeholder="Score for team 1">
 								</label>
 							</div>
 							<div>
 								<label>
-									<input id="score2" type="integer" name="score" placeholder="Score for team 2">
+									<input id="score2" class="hidden" type="integer" name="score" placeholder="Score for team 2">
 								</label>
 							</div>
 							<div>
 								<label>
+								Location of event
 									<input id="location" type="text" name="location" placeholder="Location of the event">
 								</label>
 								<br>
@@ -104,6 +105,7 @@
 							<div class="form-group">
 								<label for="exampleSelect1">Team Name</label>
 								<select class="form-control" id="associatedTeam" name="team">
+									<option>Select your Team</option>
 									<option>Blue</option>
 									<option>Red</option>
 									<option>Yellow</option>
@@ -111,9 +113,10 @@
 									<option>Purple</option>
 								</select>
 							</div>
-							<div class="form-group">
+							<div class="form-group hidden" id="secondTeam">
 								<label for="exampleSelect1">Team Name</label>
 								<select class="form-control" id="associatedTeam2" name="team">
+								<option>Select your Team</option>
 									<option>Blue</option>
 									<option>Red</option>
 									<option>Yellow</option>

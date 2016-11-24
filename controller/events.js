@@ -7,8 +7,13 @@ var Sequelize = require('sequelize');
 
 // to see all the existing events
 router.get('/api/all', function(req, res) {
-	models.Team.findAll({
-		include: [models.Event],
+	models.Event.findAll({
+		where:{
+			date: {
+			gte: Sequelize.fn('CURDATE')
+		}
+	},
+		include: [models.Team]
 	}).then(function(allEvents) {
 			res.setHeader('Content-Type', 'application/json');
 			return res.json(allEvents);
@@ -33,13 +38,11 @@ router.get('/api/all', function(req, res) {
 // get events from current date and specified game
 router.get('/api/:game', function(req, res) {
 	var game = req.params.game;
-	console.log('game', game)
 	models.Event.findAll({
 		where: {
 			game: game,
 			date: {
-			$eq: Sequelize.fn('CURDATE')
-			// $eq: '2016-11-21'
+			$gte: Sequelize.fn('CURDATE')
 			}
 		},
 		include: [models.Team]
@@ -86,7 +89,6 @@ router.post('/api/input', function(req, res) {
 						}
 					}).then(function(team) {
 						return team.addEvent(currentEvent);
-						res.redirect('/events/api/input');
 					})
 				})
 			})

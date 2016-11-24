@@ -9,6 +9,7 @@ module.exports = function(sequelize, DataTypes) {
         // associations can be defined here
         Team.belongsToMany(models.Event, {through:'eventTeam', onDelete: "CASCADE"
         });
+
       }
     }
   });

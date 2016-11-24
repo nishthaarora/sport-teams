@@ -22,7 +22,6 @@
 						<img src="assets/images/logoName.png" alt="BringTeam">
 					</a>
 				</div>
-
 				<div class= "loginBtn">
 					<button id="logIn" class="log-in">Log In</button>
 					<button id="signUp" class="sign-up">Sign Up</button>
@@ -31,65 +30,81 @@
 			</div>
 			<div class="mainHeader" role="banner">
 				<div class="container">
-					<div class="row">
-						<div class="col-4">
-							<a class="homeLink"  role="navigation" href="teamIndex.html"><span class="glyphicon glyphicon-home"></span></a>
-							<a id="allEvents" class="displayEvents" href="events/api/all">Team Schedules</a>
+					<div class="row mainHeadRow">
+						<div class="col-md-3 dropdowns">
+							<a class="homeLink"  role="navigation" href="/"><span class="glyphicon glyphicon-home"></span></a>
+			<!-- 				<a id="allEvents" class="displayEvents" href="events/api/all">Team Schedules</a>
 							|
 							<a id="allEvents" class="displayEvents" href="events/api/all">Team Roster</a>
 							|
 							<a id="newEvent" class="new-event" href="/input">Enter new events</a>
 							|
-							<a id="enterPlayer" class="enter-player" href="/addplayers">Add players</a>
+							<a id="enterPlayer" class="enter-player" href="/addplayers">Add players</a> -->
 						</div>
-						</div>
-						</div>
-						</div>
-						</div>
-						<!-- /header -->
-						<!-- using handlebars  displaying events on the basis of link clicked-->
-						<div class="events hidden">
-							{{#each events}}
-							<li>
-								{{Team_name}}
-							</li>
-							{{#each Events}}
-							<li>
-								{{date}},{{start_time}},{{end_time}},{{type}},{{score1}},{{score}},{{location}}
-							</li>
-							{{/each}}
-							{{/each}}
-						</div>
-						<!-- Page Content displaying pictures of all the events-->
-						<div id="page-content-wrapper">
-							<div class="container-fluid">
-								<div class="row">
-									<div class="col-lg-12">
-										<h1>All Events</h1>
-										<div class="row pageContent">
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
-<!--Footer describing team developers -->
-    <div class="pageFooter">
-    <div class = "container">
-      Copywrite: 2016, Made by Dream Team.  All rights reserved.</div>
+		<!-- /header -->
+		<!-- using handlebars  displaying events on the basis of link clicked-->
+<div class="container">
+	<h1>Upcoming Events</h1>
+<div class="row">
+        <div class="col-md-12">
+            <table class="table tablesorter hidden">
+                <thead>
+                    <tr>
+												<th>Date</th>
+												<th>Game</th>
+												<th>Start Time</th>
+												<th>End Time</th>
+												<th>Type</th>
+												<th>Location</th>
+												<th>Comment</th>
+												<th>Team1</th>
+												<th>Team2</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
     </div>
+</div>
 
 
+<!-- <div class="events hidden col-md-12"> -->
+<script id="template" type="text/html">
+				{{#each events}}
+					<tr>
+						<!-- <td>{{id}}</td> -->
+						<td>{{date}}</td>
+						<td>{{game}}</td>
+						<td>{{start_time}}</td>
+						<td>{{end_time}}</td>
+						<td>{{type}}</td>
+						<td>{{location}}</td>
+						<td>{{comment}}</td>
+							{{#each Teams}}
+								<td>{{Team_name}}</td>
+							{{/each}}
+					</tr>
+					{{/each}}
+</script>
 
-
-								<!-- jquery -->
-								<script type="text/javascript" src="/script/jquery.js"></script>
-								<!-- handlebars cdn -->
-								<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>
-								<!-- bootstrap stylesheet -->
-								<script type="text/javascript" src="/script/bootstrap.min.js"></script>
-								<!-- js -->
-								<script type="text/javascript" src="/script/script.js">
-								</script>
-							</body>
-						</html>
+		<!--Footer describing team developers -->
+		<div class="pageFooter">
+			<div class = "container">
+			Copywrite: 2016, Made by Dream Team.  All rights reserved.</div>
+		</div>
+		<!-- jquery -->
+		<script type="text/javascript" src="/script/jquery.js"></script>
+		<!-- handlebars cdn -->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>
+		<!-- bootstrap stylesheet -->
+		<script type="text/javascript" src="/script/bootstrap.min.js"></script>
+		<!-- js -->
+		<script type="text/javascript" src="/script/script.js">
+		</script>
+	</body>
+</html>

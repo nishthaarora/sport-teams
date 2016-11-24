@@ -1,12 +1,4 @@
-var games = ['football', 'baseball', 'basketball', 'tennis', 'hockey', 'cycle'];
-
-// menu toggle script
-
-$("#menu-toggle").click(function(evt) {
-	evt.preventDefault();
-	$("#wrapper").toggleClass("toggled");
-});
-
+var games = ['all games', 'football', 'baseball', 'basketball', 'tennis', 'hockey', 'cycle'];
 
 // signIn and signUp form and signout
 
@@ -49,37 +41,76 @@ $('#userSignUp').on('click', function(evt) {
 	$.post('/users/create', newUser)
 		.done(function() {
 			alert('user created');
-			window.location.href = '/';
+			window.location.href = '/events';
 		})
 });
 
 // signout
-	$('#signOut').on('click', function(evt) {
-		evt.preventDefault();
-		$.post('/users/signout', function(data) {
-			console.log(data)
-		}).done(function() {
-				window.location.href = '/';
-			});
+$('#signOut').on('click', function(evt) {
+	evt.preventDefault();
+	$.post('/users/signout', function(data) {
+		console.log(data)
+	}).done(function() {
+		window.location.href = '/';
+	});
+})
+
+// function for creating dropdown menu in the navbar
+function createDropdownWithArray() {
+	var gameDropdown = $('<div class="dropdown col-md-3">');
+	var dropdownBtn = $('<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">');
+	dropdownBtn.html('select game')
+	var caret = $('<span class="caret">');
+	dropdownBtn.append(caret);
+	gameDropdown.append(dropdownBtn)
+	var ulTag = $('<ul class="dropdown-menu" id="allEvents">');
+	games.forEach(function(ele) {
+		var listItem = $('<li>' + '<a href="#">' + ele + '</a></li>');
+		ulTag.append(listItem)
 	})
+	gameDropdown.append(ulTag)
+
+	$('.mainHeadRow').append(gameDropdown);
+
+	$('.dropdown-menu li a').click(function() {
+		$('.btn:first-child').text($(this).text()).append(caret);
+		$('.btn:first-child').val($(this).text());
+	})
+
+}
 
 
 /* on click of a. all events link which is present in events route user can see all the existing events
 which is displayed making ajax calls to our sql server
 */
-$('#allEvents').on('click', function(evt) {
+$(document).on('click', '#allEvents li a', function(evt) {
 	evt.preventDefault();
-	var eventTemplate = $('.events').html();
-	$.get('events/api/all', function(eventData) {
-		console.log(eventData);
-		var template = Handlebars.compile(eventTemplate);
-		$('.events').html(template({
+	var game = $(this).text()
+	if (game === "all games") {
+		var code = $('#template').html();
+		$.get('events/api/all', function(eventData) {
+			var template = Handlebars.compile(code);
+			var html = template({
 				events: eventData
-			}))
-			.removeClass('hidden');
-	})
-
+			})
+			$('tbody').html(html)
+			$('table').removeClass('hidden');
+		})
+	} else {
+		var code = $('#template').html();
+			$.get('events/api/' + game, function(eventData) {
+			var template = Handlebars.compile(code);
+			var html = template({
+				events: eventData
+			})
+			$('tbody').html(html)
+			$('table').removeClass('hidden');
+		})
+	}
 })
+
+
+
 
 // getting team realted events
 // $('#teamEvents').on('click', function(evt) {
@@ -118,6 +149,25 @@ $('#playerSubmit').on('click', function(evt) {
 		})
 })
 
+function validation() {
+	$('#eventType').on('change', function() {
+		var type = $('#eventType').val().trim()
+		if (type === 'Game') {
+			$('#secondTeam').removeClass('hidden');
+			$('#score1').removeClass('hidden');
+			$('#score2').removeClass('hidden');
+		} else {
+			$('#secondTeam').addClass('hidden');
+			$('#score1').addClass('hidden');
+			$('#score2').addClass('hidden');
+		}
+
+	});
+
+}
+
+
+
 $('#eventSubmit').on('click', function(evt) {
 	evt.preventDefault()
 	var newEvent = {
@@ -132,13 +182,12 @@ $('#eventSubmit').on('click', function(evt) {
 		comment: $('#comment').val().trim(),
 		team: [$('#associatedTeam').val().trim(), $('#associatedTeam2').val().trim()]
 	}
-	console.log(newEvent);
 	$.post('/events/api/input', newEvent)
 		.done(function(data) {
 			alert('event added');
-			window.location.href = '/events/api/all';
 		})
 })
+
 
 function getCookie(name) {
 	var value = "; " + document.cookie;
@@ -155,3 +204,6 @@ if (getCookie('user_name')) {
 		$('#signOut').show()
 	}
 }
+
+createDropdownWithArray();
+validation()
