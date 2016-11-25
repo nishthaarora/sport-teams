@@ -31,28 +31,21 @@
 			<div class="mainHeader" role="banner">
 				<div class="container">
 					<div class="row mainHeadRow">
-						<div class="col-md-3 dropdowns">
-							<a class="homeLink"  role="navigation" href="/"><span class="glyphicon glyphicon-home"></span></a>
-			<!-- 				<a id="allEvents" class="displayEvents" href="events/api/all">Team Schedules</a>
-							|
-							<a id="allEvents" class="displayEvents" href="events/api/all">Team Roster</a>
-							|
-							<a id="newEvent" class="new-event" href="/input">Enter new events</a>
-							|
-							<a id="enterPlayer" class="enter-player" href="/addplayers">Add players</a> -->
-						</div>
+						<!-- <div class="col-md-3"> -->
+							<a class="homeLink col-md-3"  role="navigation" href="/"><span class="glyphicon glyphicon-home"></span></a>
+						<!-- </div> -->
 					</div>
 				</div>
 			</div>
 		</div>
 
 		<!-- /header -->
-		<!-- using handlebars  displaying events on the basis of link clicked-->
+		<!-- header of the table displayed in the events route for the games table -->
 <div class="container">
-	<h1>Upcoming Events</h1>
+	<h1 class="eventTable">Upcoming Games</h1>
 <div class="row">
         <div class="col-md-12">
-            <table class="table tablesorter hidden">
+            <table class="table eventTable tablesorter hidden">
                 <thead>
                     <tr>
 												<th>Date</th>
@@ -66,18 +59,17 @@
 												<th>Team2</th>
                     </tr>
                 </thead>
-                <tbody></tbody>
+                <tbody id="game"></tbody>
             </table>
         </div>
     </div>
 </div>
 
 
-<!-- <div class="events hidden col-md-12"> -->
+<!-- rows for the table which will be populated on the click of dropdown menu -->
 <script id="template" type="text/html">
 				{{#each events}}
 					<tr>
-						<!-- <td>{{id}}</td> -->
 						<td>{{date}}</td>
 						<td>{{game}}</td>
 						<td>{{start_time}}</td>
@@ -92,10 +84,96 @@
 					{{/each}}
 </script>
 
+<!-- table header for upcoming practices -->
+<div class="container">
+	<h1 class="eventTable">Practice Schedule</h1>
+<div class="row">
+        <div class="col-md-12">
+            <table class="table eventTable tablesorter hidden">
+                <thead>
+                    <tr>
+												<th>Date</th>
+												<th>Game</th>
+												<th>Start Time</th>
+												<th>End Time</th>
+												<th>Type</th>
+												<th>Location</th>
+												<th>Comment</th>
+												<th>Team1</th>
+												<th>Team2</th>
+                    </tr>
+                </thead>
+                <tbody id="practice"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- team template -->
+<div class="container">
+	<h1 class="teamTable">Upcoming Games</h1>
+<div class="row">
+        <div class="col-md-12">
+            <table class="table teamTable tablesorter hidden">
+                <thead>
+                    <tr>
+												<th>Team Name</th>
+												<th>Game</th>
+												<th>Start Time</th>
+												<th>Type</th>
+												<th>Location</th>
+												<th>Comment</th>
+                    </tr>
+                </thead>
+                <tbody id="teamGame"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+	<h1 class="teamTable">Upcoming Practice</h1>
+<div class="row">
+        <div class="col-md-12">
+            <table class="table teamTable tablesorter hidden">
+                <thead>
+                    <tr>
+												<th>Team Name</th>
+												<th>Game</th>
+												<th>Start Time</th>
+												<th>Type</th>
+												<th>Location</th>
+												<th>Comment</th>
+                    </tr>
+                </thead>
+                <tbody id="teamPractice"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- template for teams info table-->
+<script id="templateTeam" type="text/html">
+				{{#each teamEvents}}
+					<tr>
+						<td>{{Team_name}}</td>
+							{{#each Events}}
+						<td>{{game}}</td>
+						<td>{{start_time}}</td>
+						<td>{{type}}</td>
+						<td>{{location}}</td>
+						<td>{{comment}}</td>
+							{{/each}}
+					</tr>
+					{{/each}}
+</script>
+
 		<!--Footer describing team developers -->
 		<div class="pageFooter">
 			<div class = "container">
 			Copywrite: 2016, Made by Dream Team.  All rights reserved.</div>
+			<a id="newEvent" class="new-event col-md-2" href="/input">Enter new events</a>
+			<a id="enterPlayer" class="enter-player col-md-1" href="/addplayers">Add players</a>
 		</div>
 		<!-- jquery -->
 		<script type="text/javascript" src="/script/jquery.js"></script>

@@ -49,21 +49,21 @@ $('#userSignUp').on('click', function(evt) {
 $('#signOut').on('click', function(evt) {
 	evt.preventDefault();
 	$.post('/users/signout', function(data) {
-		console.log(data)
 	}).done(function() {
 		window.location.href = '/';
 	});
 })
 
+
 // function for creating dropdown menu in the navbar
-function createDropdownWithArray() {
+function displayGameDropdown() {
 	var gameDropdown = $('<div class="dropdown col-md-3">');
-	var dropdownBtn = $('<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">');
+	var dropdownBtn = $('<button class="btn eventBtn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">');
 	dropdownBtn.html('select game')
 	var caret = $('<span class="caret">');
 	dropdownBtn.append(caret);
 	gameDropdown.append(dropdownBtn)
-	var ulTag = $('<ul class="dropdown-menu" id="allEvents">');
+	var ulTag = $('<ul class="dropdown-menu eventMenu" id="allEvents">');
 	games.forEach(function(ele) {
 		var listItem = $('<li>' + '<a href="#">' + ele + '</a></li>');
 		ulTag.append(listItem)
@@ -72,16 +72,44 @@ function createDropdownWithArray() {
 
 	$('.mainHeadRow').append(gameDropdown);
 
-	$('.dropdown-menu li a').click(function() {
-		$('.btn:first-child').text($(this).text()).append(caret);
-		$('.btn:first-child').val($(this).text());
+	$('.eventMenu li a').click(function() {
+		$('.eventBtn:first-child').text($(this).text()).append(caret);
+		$('.eventBtn:first-child').val($(this).text());
 	})
+}
 
+// dropdown for team filter
+function teamDropdown(teams) {
+
+	var teamDiv = $('<div class="dropdown col-md-3">');
+	var dropdownBtn = $('<button class="btn teamBtn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">');
+	dropdownBtn.html('select team')
+	var caret = $('<span class="caret">');
+	dropdownBtn.append(caret);
+	teamDiv.append(dropdownBtn)
+	var ulTag = $('<ul class="dropdown-menu teamMenu" id="allTeams">');
+	var item = {
+		Team_name: "all teams"
+	}
+	var insertItemInDropdown = teams.push(item)
+	teams.forEach(function(ele) {
+				var listItem = $('<li>' + '<a href="#">' + ele.Team_name + '</a></li>');
+		ulTag.append(listItem)
+	})
+	teamDiv.append(ulTag)
+
+	$('.mainHeadRow').append(teamDiv);
+
+	$('.teamMenu li a').click(function() {
+		$('.teamBtn:first-child').text($(this).text()).append(caret);
+		$('.teamBtn:first-child').val($(this).text());
+	})
 }
 
 
-/* on click of a. all events link which is present in events route user can see all the existing events
-which is displayed making ajax calls to our sql server
+
+/* Events route has a dropdown with which user can see the events which are upcoming in the form of a 2 different tables by selecting the game or "all events"
+from the dropdown menu
 */
 $(document).on('click', '#allEvents li a', function(evt) {
 	evt.preventDefault();
@@ -89,50 +117,126 @@ $(document).on('click', '#allEvents li a', function(evt) {
 	if (game === "all games") {
 		var code = $('#template').html();
 		$.get('events/api/all', function(eventData) {
+			$("#game").html('');
+			$("#practice").html('');
 			var template = Handlebars.compile(code);
-			var html = template({
-				events: eventData
+			eventData.forEach(function(ele) {
+					var html = template({
+						events: [ele]
+					});
+
+					if (ele.type === 'Game') {
+						$('#game').append(html);
+					} else {
+						$("#practice").append(html);
+					}
 			})
-			$('tbody').html(html)
-			$('table').removeClass('hidden');
+			$('.eventTable').show()
+			$('.eventTable').removeClass('hidden');
+
 		})
 	} else {
 		var code = $('#template').html();
-			$.get('events/api/' + game, function(eventData) {
+		$("#game").html('');
+		$("#practice").html('');
+		$.get('events/api/' + game, function(eventData) {
 			var template = Handlebars.compile(code);
 			var html = template({
 				events: eventData
 			})
-			$('tbody').html(html)
-			$('table').removeClass('hidden');
+			eventData.forEach(function(ele) {
+					var html = template({
+						events: [ele]
+					});
+
+					if (ele.type === 'Game') {
+						$('#game').append(html);
+					} else {
+						$("#practice").append(html);
+					}
+			})
+			$('.eventTable').show()
+			$('.eventTable').removeClass('hidden');
 		})
 	}
 })
 
+// get teams specific data with a call back
+function getTeams(callback) {
+	$.get('/teams/api/allteams', function(teamData){
+		callback(teamData)
+	})
+}
 
-
-
-// getting team realted events
-// $('#teamEvents').on('click', function(evt) {
-// 	var eventTemplate = $('.events').html();
-// 	$.get('events/api/' + userTeam, function(eventData) {
-// 		var template = Handlebars.compile(eventTemplate);
-// 		$('.events').html(template({
-// 				events: eventData
-// 			}))
-// 			.removeClass('hidden');
+// get teams specific data with a promise
+// function getTeams(callback) {
+// 	return $.get('/teams/allteams', function(teamData){
 // 	})
-// })
+// }
+// getTeams().then(teamDropdown)
 
 
-// displaying users team related events only
-// $('#teamEvents').on('click', function( evt ){
-// 		evt.preventDefault();
-// 	$.get('events/api/' + userTeam, function(){
 
-// 	})
-// })
+// making an api call to retrive team related data and displaying it in tables format
 
+function displayTeamEvents() {
+	var team = $('.teamBtn').text()
+	if (team === "all teams") {
+
+		var code = $('#templateTeam').html();
+
+		$.get('teams/api/allteams', function(teamData) {
+			$("#teamGame").html('');
+			$("#teamPractice").html('');
+			var template = Handlebars.compile(code);
+			teamData.forEach(function(ele) {
+					var html = template({
+						teamEvents: [ele]
+					});
+
+					ele.Events.forEach(function(events) {
+						// console.log(events)
+						if (events.type === 'Game') {
+						$('#teamGame').append(html);
+					} else {
+						$("#teamPractice").append(html);
+					}
+					})
+			})
+				$('.teamTable').show();
+				$('.teamTable').removeClass('hidden');
+
+
+		})
+	}
+	else {
+		var code = $('#templateTeam').html();
+		$("#teamGame").html('');
+		$("#teamPractice").html('');
+		$.get('teams/api/' + team, function(eventData) {
+			var template = Handlebars.compile(code);
+			// var html = template({
+			// 	events: eventData
+			// })
+			eventData.forEach(function(ele) {
+					var html = template({
+						teamEvents: [ele]
+					});
+
+					ele.Events.forEach(function(ele) {
+								if (ele.type === 'Game') {
+						$('#teamGame').append(html);
+					} else {
+						$("#teamPractice").append(html);
+					}
+				})
+			})
+				$('.teamTable').show();
+				$('.teamTable').removeClass('hidden');
+		})
+	}
+
+}
 
 // adding players to sql
 $('#playerSubmit').on('click', function(evt) {
@@ -149,6 +253,7 @@ $('#playerSubmit').on('click', function(evt) {
 		})
 })
 
+// validation function while adding players into table which tells when to display score column and the input param for the 2nd team
 function validation() {
 	$('#eventType').on('change', function() {
 		var type = $('#eventType').val().trim()
@@ -167,7 +272,7 @@ function validation() {
 }
 
 
-
+// this is the route for posting the events by taking form inputs
 $('#eventSubmit').on('click', function(evt) {
 	evt.preventDefault()
 	var newEvent = {
@@ -188,13 +293,14 @@ $('#eventSubmit').on('click', function(evt) {
 		})
 })
 
-
+// setting cookied
 function getCookie(name) {
 	var value = "; " + document.cookie;
 	var parts = value.split("; " + name + "=");
 	if (parts.length == 2) return parts.pop().split(";").shift();
 }
 
+// getting those cookies and displaying welcome message to the user
 if (getCookie('user_name')) {
 	var userName = getCookie('user_name')
 	if (userName !== "") {
@@ -204,6 +310,8 @@ if (getCookie('user_name')) {
 		$('#signOut').show()
 	}
 }
-
-createDropdownWithArray();
-validation()
+// calling functions
+displayGameDropdown();
+getTeams(teamDropdown);
+$(document).on('click', '#allTeams', displayTeamEvents)
+validation();

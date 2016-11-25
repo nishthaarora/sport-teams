@@ -4,14 +4,31 @@ var express = require('express');
 var router = express.Router();
 var Promise = require('bluebird');
 
-// router.get('/allteams', function(req, res) {
-// 	models.Team.findAll({
-// 		attributes: ['id', 'Team_name'],
-// 		include: [models.Event]
-// 	}).then(function(allTeams) {
-// 		res.send(JSON.stringify(allTeams))
-// 	});
-// })
+
+// function for creating dropdown for the teams menu for team related events
+router.get('/api/allteams', function(req, res) {
+	models.Team.findAll({
+		attributes: ['id', 'Team_name'],
+		include: [models.Event]
+	}).then(function(allTeams) {
+		return res.json(allTeams)
+	});
+})
+
+// team specific events
+
+router.get('/api/:team', function(req, res) {
+	var team = req.params.team;
+	models.Team.findAll({
+		where: {
+			Team_name: team
+		},
+		include: [models.Event]
+	}).then(function(allTeams) {
+		return res.json(allTeams)
+	});
+})
+
 
 
 // adding team players
@@ -47,5 +64,6 @@ function findAllTeams(newPlayer) {
 		attributes: ['id']
 	})
 }
+
 
 module.exports = router;

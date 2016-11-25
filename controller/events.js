@@ -47,7 +47,6 @@ router.get('/api/:game', function(req, res) {
 		},
 		include: [models.Team]
 	}).then(function(allEvents) {
-		console.log(allEvents);
 		res.setHeader('Content-Type', 'application/json');
 		return res.json(allEvents)
 	})

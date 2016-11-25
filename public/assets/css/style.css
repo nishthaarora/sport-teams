@@ -1,3 +1,4 @@
+
 .loginBtn{
 	float:right;
 
@@ -32,6 +33,13 @@
 	color: black;
 }
 
+.eventTable{
+	display: none;
+}
+
+.teamTable{
+	display: none;
+}
 /*new css*/
 
 .navbar-brand {
