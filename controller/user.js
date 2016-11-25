@@ -96,6 +96,7 @@ router.post('/signout', function(req, res) {
 		req.session = null
 		res.clearCookie('connect.sid', '', {expires: new Date()});
 		res.clearCookie('user_name');
+		res.cookie('logged_in', false);
 		res.json({
 			success: true
 		})

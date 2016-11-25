@@ -48,8 +48,7 @@ $('#userSignUp').on('click', function(evt) {
 // signout
 $('#signOut').on('click', function(evt) {
 	evt.preventDefault();
-	$.post('/users/signout', function(data) {
-	}).done(function() {
+	$.post('/users/signout', function(data) {}).done(function() {
 		window.location.href = '/';
 	});
 })
@@ -93,7 +92,7 @@ function teamDropdown(teams) {
 	}
 	var insertItemInDropdown = teams.push(item)
 	teams.forEach(function(ele) {
-				var listItem = $('<li>' + '<a href="#">' + ele.Team_name + '</a></li>');
+		var listItem = $('<li>' + '<a href="#">' + ele.Team_name + '</a></li>');
 		ulTag.append(listItem)
 	})
 	teamDiv.append(ulTag)
@@ -121,15 +120,15 @@ $(document).on('click', '#allEvents li a', function(evt) {
 			$("#practice").html('');
 			var template = Handlebars.compile(code);
 			eventData.forEach(function(ele) {
-					var html = template({
-						events: [ele]
-					});
+				var html = template({
+					events: [ele]
+				});
 
-					if (ele.type === 'Game') {
-						$('#game').append(html);
-					} else {
-						$("#practice").append(html);
-					}
+				if (ele.type === 'Game') {
+					$('#game').append(html);
+				} else {
+					$("#practice").append(html);
+				}
 			})
 			$('.eventTable').show()
 			$('.eventTable').removeClass('hidden');
@@ -145,15 +144,15 @@ $(document).on('click', '#allEvents li a', function(evt) {
 				events: eventData
 			})
 			eventData.forEach(function(ele) {
-					var html = template({
-						events: [ele]
-					});
+				var html = template({
+					events: [ele]
+				});
 
-					if (ele.type === 'Game') {
-						$('#game').append(html);
-					} else {
-						$("#practice").append(html);
-					}
+				if (ele.type === 'Game') {
+					$('#game').append(html);
+				} else {
+					$("#practice").append(html);
+				}
 			})
 			$('.eventTable').show()
 			$('.eventTable').removeClass('hidden');
@@ -163,7 +162,7 @@ $(document).on('click', '#allEvents li a', function(evt) {
 
 // get teams specific data with a call back
 function getTeams(callback) {
-	$.get('/teams/api/allteams', function(teamData){
+	$.get('/teams/api/allteams', function(teamData) {
 		callback(teamData)
 	})
 }
@@ -185,55 +184,65 @@ function displayTeamEvents() {
 
 		var code = $('#templateTeam').html();
 
-		$.get('teams/api/allteams', function(teamData) {
-			$("#teamGame").html('');
-			$("#teamPractice").html('');
-			var template = Handlebars.compile(code);
-			teamData.forEach(function(ele) {
-					var html = template({
-						teamEvents: [ele]
-					});
-
-					ele.Events.forEach(function(events) {
-						// console.log(events)
-						if (events.type === 'Game') {
-						$('#teamGame').append(html);
-					} else {
-						$("#teamPractice").append(html);
-					}
-					})
-			})
-				$('.teamTable').show();
-				$('.teamTable').removeClass('hidden');
-
-
-		})
-	}
-	else {
-		var code = $('#templateTeam').html();
 		$("#teamGame").html('');
 		$("#teamPractice").html('');
-		$.get('teams/api/' + team, function(eventData) {
-			var template = Handlebars.compile(code);
-			// var html = template({
-			// 	events: eventData
-			// })
-			eventData.forEach(function(ele) {
-					var html = template({
-						teamEvents: [ele]
-					});
 
-					ele.Events.forEach(function(ele) {
-								if (ele.type === 'Game') {
+		$.get('teams/api/allteams', function(eventData) {
+			var template = Handlebars.compile(code);
+			eventData.forEach(function(ele) {
+				ele.Events.forEach(function(teamEvent) {
+
+					var data = $.extend({}, {
+						"Team_name": ele.Team_name
+					}, teamEvent);
+
+					var html = template({
+						events: [data]
+					})
+					// console.log(events)
+					if (teamEvent.type === 'Game') {
 						$('#teamGame').append(html);
 					} else {
 						$("#teamPractice").append(html);
 					}
 				})
 			})
-				$('.teamTable').show();
-				$('.teamTable').removeClass('hidden');
+			$('.teamTable').show();
+			$('.teamTable').removeClass('hidden');
+
+
 		})
+	} else {
+		var code = $('#templateTeam').html();
+
+		$("#teamGame").html('');
+		$("#teamPractice").html('');
+
+		$.get('teams/api/' + team, function(eventData) {
+			var template = Handlebars.compile(code);
+
+			eventData.forEach(function(ele) {
+
+				ele.Events.forEach(function(teamEvent) {
+
+					var data = $.extend({}, {
+						"Team_name": ele.Team_name
+					}, teamEvent);
+
+					var html = template({
+						events: [data]
+					});
+
+					if (teamEvent.type === 'Game') {
+						$('#teamGame').append(html);
+					} else {
+						$("#teamPractice").append(html);
+					}
+				});
+			});
+			$('.teamTable').show();
+			$('.teamTable').removeClass('hidden');
+		});
 	}
 
 }
@@ -307,9 +316,21 @@ if (getCookie('user_name')) {
 		var user = $('<div id="userName" class="user-name">').html('Welcome ' + userName + ' !');
 		$('.loginBtn').before(user)
 		$('.loginBtn').hide();
-		$('#signOut').show()
+		$('#signOut').show();
 	}
 }
+
+
+var isLoggedIn = getCookie('logged_in');
+if (isLoggedIn) {
+	$('.getDetails').on('click', function() {
+		alert('Please Login to view the content');
+		window.location.href = "/signin"
+		return false;
+	})
+}
+
+
 // calling functions
 displayGameDropdown();
 getTeams(teamDropdown);

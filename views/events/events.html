@@ -18,7 +18,7 @@
 		<div class="navbar navbar-static-top primaryNav" role="navigation">
 			<div class="container">
 				<div class="navbar-header">
-					<a class="navbar-brand" href="#">
+					<a class="navbar-brand" href="/">
 						<img src="assets/images/logoName.png" alt="BringTeam">
 					</a>
 				</div>
@@ -132,7 +132,7 @@
 </div>
 
 <div class="container">
-	<h1 class="teamTable">Upcoming Practice</h1>
+<h1 class="teamTable">Practice Schedule</h1>
 <div class="row">
         <div class="col-md-12">
             <table class="table teamTable tablesorter hidden">
@@ -154,16 +154,14 @@
 
 <!-- template for teams info table-->
 <script id="templateTeam" type="text/html">
-				{{#each teamEvents}}
+				{{#each events}}
 					<tr>
 						<td>{{Team_name}}</td>
-							{{#each Events}}
 						<td>{{game}}</td>
 						<td>{{start_time}}</td>
 						<td>{{type}}</td>
 						<td>{{location}}</td>
 						<td>{{comment}}</td>
-							{{/each}}
 					</tr>
 					{{/each}}
 </script>
