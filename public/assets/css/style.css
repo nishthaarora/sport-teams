@@ -40,7 +40,11 @@
 .teamTable{
 	display: none;
 }
-/*new css*/
+
+td[contenteditable="true"]{
+    border: 2px solid #9C27B0;
+    background: rgba(0, 188, 212, 0.2);
+}
 
 .navbar-brand {
 	margin-bottom: 60px;
@@ -89,6 +93,10 @@
 	padding: 30px 10px 30px 10px;
 }
 
+label.btn.btn-primary.active.Yellow, label.btn.btn-primary.Yellow {
+	background: #FFC107 !important;
+}
+
 .mainHeader .glyphicon {
 	font-size: 40px;
 	color:white;
@@ -101,6 +109,10 @@
 
 .col-xs-3 {
 	width: 25%;
+}
+
+.stats-btn>a, .events-btn>a, .addplayers-btn>a, .addevents-btn>a {
+	color:white;
 }
 
 #loginPage .logSite .noAccount {

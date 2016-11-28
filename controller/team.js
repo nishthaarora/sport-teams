@@ -24,33 +24,67 @@ router.get('/api/:team', function(req, res) {
 			return res.json(allTeams)
 		});
 	})
-	// adding team players
-router.post('/api/addplayers', function(req, res) {
-	var newPlayer = req.body;
-	findAllTeams(newPlayer)
-		.then(function(data) {
-			return new Promise(function(resolve) {
-				data.forEach(function(ele) {
-					resolve(ele.id)
-				})
-			})
-		}).then(function(teamId) {
-			return models.Player.create({
-				fname: newPlayer.fname,
-				lname: newPlayer.lname,
-				team: newPlayer.team,
-				uniformNum: newPlayer.uniformNum,
-				TeamId: teamId
-			}).then(function(player) {})
-		})
+
+// getPlayers()
+router.get('/api/players/:team', function(req, res){
+	var team = req.params.team;
+	return models.Player.findAll({
+		where: {
+			team: team
+		}
+	}).then(function(players){
+		return res.json(players)
+	})
 })
 
-function findAllTeams(newPlayer) {
-	return models.Team.findAll({
-		where: {
-			Team_name: newPlayer.team
-		},
-		attributes: ['id']
-	})
-}
-module.exports = router;
+
+	// adding team players
+router.post('/api/addplayers', function(req, res) {
+			var newPlayer = req.body;
+			return models.Player.findAll({
+				where: {
+					fname: newPlayer.fname.toLowerCase(),
+					lname: newPlayer.lname.toLowerCase(),
+					team: newPlayer.team,
+					uniformNum: newPlayer.uniformNum
+				}
+			}).then(function(users) {
+				if (users.length > 0) {
+					res.send({
+						success: false
+					})
+				} else {
+					findAllTeams(newPlayer)
+						.then(function(data) {
+							return new Promise(function(resolve) {
+								data.forEach(function(ele) {
+									resolve(ele.id)
+								})
+							})
+						}).then(function(teamId) {
+								return models.Player.create({
+									fname: newPlayer.fname.toLowerCase(),
+									lname: newPlayer.lname.toLowerCase(),
+									team: newPlayer.team,
+									uniformNum: newPlayer.uniformNum,
+									TeamId: teamId
+								})
+							}).then(function(player) {
+								console.log(player)
+								res.send({
+									success: true
+								})
+							})
+						}
+			})
+		})
+
+			function findAllTeams(newPlayer) {
+				return models.Team.findAll({
+					where: {
+						Team_name: newPlayer.team
+					},
+					attributes: ['id']
+				})
+			}
+			module.exports = router;

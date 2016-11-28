@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>events</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+    <!-- Bootstrap Stylesheet -->
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+    <!-- sidebar stylesheet -->
+    <link href="../assets/css/simple-sidebar.css" rel="stylesheet">
+    <!-- bootstrap switch -->
+    <link href="../assets/css/bootstrap-switch.min.css" rel="stylesheet">
+    <!-- internal stylesheet -->
+    <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+        <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+  </head>
+  <body>
+    <!-- login and signup button  -->
+    <!--Nav Bar header -->
+    <div class="navbar navbar-static-top primaryNav" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">
+            <img src="assets/images/logoName.png" alt="BringTeam">
+          </a>
+        </div>
+        <div class= "loginBtn">
+          <button id="logIn" class="log-in">Log In</button>
+          <button id="signUp" class="sign-up">Sign Up</button>
+        </div>
+        <button id="signOut" class="sign-out">Sign Out</button>
+      </div>
+      <div class="mainHeader" role="banner">
+        <div class="container">
+          <div class="row">
+            <!-- <div class="col-md-3"> -->
+              <a class="homeLink col-md-3"  role="navigation" href="/"><span class="glyphicon glyphicon-home"></span></a>
+              <button class="btn btn-primary events-btn"><a href="events">Events</a></button>
+              <button class="btn btn-primary addevents-btn"><a href="input">Add Events</a></button>
+              <button class="btn btn-primary addplayers-btn"><a href="addplayers">Add Players</a></button>
+            <!-- </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- /header -->
+    <!-- header of the table displayed in the events route for the games table -->
+<div class="container">
+  <h1 class="stats">Team Stats</h1>
+  <!--Div that will hold the bar chart-->
+    <div id="chart_div"></div>
+
+
+    <!--Footer describing team developers -->
+    <div class="pageFooter">
+      <div class = "container">
+      Copywrite: 2016, Made by Dream Team.  All rights reserved.</div>
+
+
+    </div>
+    <!-- jquery -->
+    <script type="text/javascript" src="/script/jquery.js"></script>
+    <!-- bootstrap Switch -->
+    <script type="text/javascript" src="/script/bootstrap-switch.min.js"></script>
+    <!-- handlebars cdn -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>
+    <!-- bootstrap stylesheet -->
+    <script type="text/javascript" src="/script/bootstrap.min.js"></script>
+    <!-- js -->
+    <script type="text/javascript" src="/script/script.js">
+    </script>
+  </body>
+</html>

@@ -5,45 +5,22 @@ var router = express.Router();
 var Promise = require('bluebird');
 var Sequelize = require('sequelize');
 
-// to see all the existing events
+// to see all the existing greater than today's date events
 router.get('/api/all', function(req, res) {
 	models.Event.findAll({
-		where:{
-			date: {
-			gte: Sequelize.fn('CURDATE')
-		}
-	},
 		include: [models.Team]
 	}).then(function(allEvents) {
-			res.setHeader('Content-Type', 'application/json');
-			return res.json(allEvents);
-				})
-		})
-
-
-// to see the events respective to the team you belong to
-// router.get('/api/:team', function(req, res) {
-// 	var team = req.params.team;
-// 	// console.log('team', team)
-// 	models.Team.findAll({
-// 		where: {Team_name: team},
-// 		include: [models.Event],
-// 	}).then(function(allEvents) {
-// 		res.setHeader('Content-Type', 'application/json');
-// 		return res.json(allEvents)
-// 	})
-// })
-
+		res.setHeader('Content-Type', 'application/json');
+		return res.json(allEvents);
+	});
+})
 
 // get events from current date and specified game
 router.get('/api/:game', function(req, res) {
 	var game = req.params.game;
 	models.Event.findAll({
 		where: {
-			game: game,
-			date: {
-			$gte: Sequelize.fn('CURDATE')
-			}
+			game: game
 		},
 		include: [models.Team]
 	}).then(function(allEvents) {
@@ -52,6 +29,23 @@ router.get('/api/:game', function(req, res) {
 	})
 })
 
+
+// update data in sequelize
+router.post('/api/update/:id', function(req, res) {
+	var updateEventId = req.params.id
+	return models.Event.update({
+		score1: req.body.score1,
+		score: req.body.score
+	}, {
+		where: {
+			id: updateEventId
+		}
+	}).then(function() {
+		res.json({
+			success: true
+		})
+	})
+})
 
 
 /* Taking user inputs from the input route and creating sql database for events
@@ -92,7 +86,7 @@ router.post('/api/input', function(req, res) {
 				})
 			})
 		})
-		res.send('success');
+	res.send('success');
 })
 
 function getTeamId(event) {

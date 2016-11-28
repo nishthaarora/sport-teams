@@ -9,8 +9,13 @@
 		<link href="../assets/css/bootstrap.min.css" rel="stylesheet">
 		<!-- sidebar stylesheet -->
 		<link href="../assets/css/simple-sidebar.css" rel="stylesheet">
+		<!-- bootstrap switch -->
+		<link href="../assets/css/bootstrap-switch.min.css" rel="stylesheet">
 		<!-- internal stylesheet -->
 		<link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+		    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
 	</head>
 	<body>
 		<!-- login and signup button  -->
@@ -33,11 +38,19 @@
 					<div class="row mainHeadRow">
 						<!-- <div class="col-md-3"> -->
 							<a class="homeLink col-md-3"  role="navigation" href="/"><span class="glyphicon glyphicon-home"></span></a>
+							Past Events
+							<input id="pastEvents" type="checkbox" name="my-checkbox" checked>
+							<!-- display team players -->
+							<button id="players" class="btn btn-primary stats-btn"><a href="/events">Team Players</a></button>
+							<!-- display stats -->
+							<button id="stats" class="btn btn-primary stats-btn"><a href="/stats">Stats</a></button>
 						<!-- </div> -->
 					</div>
 				</div>
 			</div>
 		</div>
+
+		<div class="playersDiv container"></div>
 
 		<!-- /header -->
 		<!-- header of the table displayed in the events route for the games table -->
@@ -57,6 +70,9 @@
 												<th>Comment</th>
 												<th>Team1</th>
 												<th>Team2</th>
+												<th>Score1</th>
+												<th>Score2</th>
+
                     </tr>
                 </thead>
                 <tbody id="game"></tbody>
@@ -69,7 +85,7 @@
 <!-- rows for the table which will be populated on the click of dropdown menu -->
 <script id="template" type="text/html">
 				{{#each events}}
-					<tr>
+					<tr data-id={{id}}>
 						<td>{{date}}</td>
 						<td>{{game}}</td>
 						<td>{{start_time}}</td>
@@ -80,12 +96,16 @@
 							{{#each Teams}}
 								<td>{{Team_name}}</td>
 							{{/each}}
+						<td class="score score1" contenteditable="false">{{score1}}</td>
+						<td class="score score2" contenteditable="false">{{score}}</td>
+						<td><button class="editbtn">Edit</button></td>
+						<td><button class="savebtn">Save</button></td>
 					</tr>
 					{{/each}}
 </script>
 
 <!-- table header for upcoming practices -->
-<div class="container">
+<div class="practiceContainer container">
 	<h1 class="eventTable">Practice Schedule</h1>
 <div class="row">
         <div class="col-md-12">
@@ -100,7 +120,6 @@
 												<th>Location</th>
 												<th>Comment</th>
 												<th>Team1</th>
-												<th>Team2</th>
                     </tr>
                 </thead>
                 <tbody id="practice"></tbody>
@@ -119,10 +138,13 @@
                     <tr>
 												<th>Team Name</th>
 												<th>Game</th>
+												<th>Date</th>
 												<th>Start Time</th>
 												<th>Type</th>
 												<th>Location</th>
 												<th>Comment</th>
+												<th>Score1</th>
+												<th>Score2</th>
                     </tr>
                 </thead>
                 <tbody id="teamGame"></tbody>
@@ -140,6 +162,7 @@
                     <tr>
 												<th>Team Name</th>
 												<th>Game</th>
+												<th>Date</th>
 												<th>Start Time</th>
 												<th>Type</th>
 												<th>Location</th>
@@ -155,16 +178,59 @@
 <!-- template for teams info table-->
 <script id="templateTeam" type="text/html">
 				{{#each events}}
-					<tr>
+					<tr data-id="events.id">
 						<td>{{Team_name}}</td>
 						<td>{{game}}</td>
+						<td>{{date}}</td>
 						<td>{{start_time}}</td>
 						<td>{{type}}</td>
 						<td>{{location}}</td>
 						<td>{{comment}}</td>
+						<td class="score score1" contenteditable="false">{{score1}}</td>
+						<td class="score score2" contenteditable="false">{{score}}</td>
+						<td><button class="editbtn">Edit</button></td>
+						<td><button class="savebtn">Save</button></td>
 					</tr>
 					{{/each}}
 </script>
+
+
+		<!-- players template -->
+
+
+	<div class="container hidden players">
+<h1 class="playerTable">Players</h1>
+<div class="row">
+        <div class="col-md-12">
+            <table class="table playerTable tablesorter hidden">
+                <thead>
+                    <tr>
+												<th>First Name</th>
+												<th>Last Name</th>
+												<th>Team</th>
+												<th>Uniform Num</th>
+												<th>Email</th>
+                    </tr>
+                </thead>
+                <tbody id="teamPlayers"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- template for teams info table-->
+<script id="templatePlayers" type="text/html">
+				{{#each players}}
+					<tr data-id="players.id">
+						<td>{{fname}}</td>
+						<td>{{lname}}</td>
+						<td>{{team}}</td>
+						<td>{{uniformNum}}</td>
+						<td>{{email}}</td>
+					</tr>
+					{{/each}}
+</script>
+
 
 		<!--Footer describing team developers -->
 		<div class="pageFooter">
@@ -175,6 +241,8 @@
 		</div>
 		<!-- jquery -->
 		<script type="text/javascript" src="/script/jquery.js"></script>
+		<!-- bootstrap Switch -->
+		<script type="text/javascript" src="/script/bootstrap-switch.min.js"></script>
 		<!-- handlebars cdn -->
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>
 		<!-- bootstrap stylesheet -->
