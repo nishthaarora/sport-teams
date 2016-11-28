@@ -43,16 +43,16 @@ router.post('/create', function(req, res) {
 			fname: req.body.fname.toLowerCase(),
 			lname: req.body.lname.toLowerCase(),
 			team: req.body.team,
-			email: req.body.email
+			uniformNum: req.body.uniformNum
 		}
 	}).then(function(users) {
-		console.log('users', users)
-		if (users.length > 0 && users.email !== null) {
+		if (users.length > 0 && users[0].email !== null) {
 			res.send({
-				success: false
+				success: false,
+				error: 'User already exists. Please go to login page.'
 			});
 
-		} else if (users.length > 0 && users.email === null) {
+		} else if (users.length > 0 && users[0].email === null) {
 			bcrypt.genSalt(10, function(err, salt) {
 				bcrypt.hash(req.body.password, salt, function(err, hash) {
 					return models.Player.update({
@@ -65,12 +65,17 @@ router.post('/create', function(req, res) {
 							team: req.body.team,
 							uniformNum: req.body.uniformNum
 						}
-					})
+					}).then( function() {
+						res.json({success: true})
+					}, function( err ) {
+						res.json({
+							success: false,
+							error: err
+						})
+					});
 				})
 			})
-			res.send({
-				success: true
-			})
+
 		} else {
 			// sending the data teamId to the record created in mysql at the time of user signup
 			findAllTeams(req.body.team)

@@ -40,18 +40,16 @@ $('#userSignUp').on('click', function(evt) {
 
 	$.post('/users/create', newUser)
 		.done(function(res) {
-			for(var key in res) {
-				if(res[key] === false) {
-					alert('user exist, please login')
-					// window.location.href = '/signin';
+			if (res.success) {
+				alert('user created');
+			} else {
+				if (res.error) {
+					alert(res.error)
 				} else {
-					alert('user created');
-				// window.location.href = '/events';
+					alert('Some error occured.');
 				}
 			}
-
-
-		})
+		});
 });
 
 // signout
@@ -145,8 +143,10 @@ function teamDropdown(teams) {
 	})
 }
 
+
+
 // creating colored button on click of Team players button
-function displayTeamCheckbox(evt){
+function displayTeamCheckbox(evt) {
 	evt.preventDefault();
 	$('.playersDiv').html('')
 	var heading = $('<h1>' + 'Teams' + '</h1>')
@@ -159,7 +159,7 @@ function displayTeamCheckbox(evt){
 			var buttonLabel = $('<label class="' + 'btn btn-primary active teamBtn ' + ele.Team_name + '">' + ele.Team_name + '</label>')
 			buttonLabel.css('background', ele.Team_name)
 			buttonDiv.append(buttonLabel)
-			var buttonInput = $('<input type="checkbox" checked autocomplete="off">' )
+			var buttonInput = $('<input type="checkbox" checked autocomplete="off">')
 			buttonLabel.append(buttonInput)
 		})
 	})
@@ -170,13 +170,13 @@ function identifyPlayerTeam(evt) {
 	$('#teamPlayers').html('')
 	var team = $(this).text();
 	var code = $('#templatePlayers').html();
-	$.get('teams/api/players/' + team, function(players){
+	$.get('teams/api/players/' + team, function(players) {
 		var template = Handlebars.compile(code);
 		players.forEach(function(ele) {
 			console.log(ele)
 			var html = template({
-					players: [ele]
-				});
+				players: [ele]
+			});
 			$('.players').removeClass('hidden')
 			$('.playerTable').removeClass('hidden')
 			$('#teamPlayers').append(html)
@@ -207,6 +207,7 @@ $(document).on('click', '#allEvents li', function(evt) {
 	if (game === "all games") {
 		var code = $('#template').html();
 		$.get('events/api/all', function(eventData) {
+
 			if (!pastEventsFlag) {
 				// filter the data where date is greater than and eq to today
 				eventData = eventData.filter(function(e) {
@@ -382,15 +383,12 @@ $('#playerSubmit').on('click', function(evt) {
 	}
 	$.post('/teams/api/addplayers', newPlayer)
 		.done(function(res) {
-			for(var key in res) {
-				console.log(key)
-				if(res[key] === false) {
-					alert('player already exist')
-				} else {
-					alert('player created')
-				}
+			if (res.success) {
+				alert('player created');
+			} else {
+				alert('player already exists');
 			}
-		})
+		});
 })
 
 // validation function while adding players into table which tells when to display score column and the input param for the 2nd team
@@ -477,86 +475,14 @@ if (getCookie('user_name')) {
 // disabling the anchor tags links if the user is not logged in and regirecting the user to login page
 var isLoggedIn = getCookie('logged_in');
 $('.getDetails').on('click', function() {
-		if (isLoggedIn === undefined || isLoggedIn === 'false') {
-			console.log(isLoggedIn)
-			alert('Please Login to view the content');
-			window.location.href = "/signin"
-			return false;
-		}
+	if (isLoggedIn === undefined || isLoggedIn === 'false') {
+		console.log(isLoggedIn)
+		alert('Please Login to view the content');
+		window.location.href = "/signin"
+		return false;
+	}
 
-	})
-	// checking for the chart-div on the page to display stats
-if ($('#chart_div').length) {
-	// displaying google charts
-	// Load the Visualization API and the corechart package.
-	google.charts.load('current', {
-		'packages': ['corechart']
-	});
-	// Set a callback to run when the Google Visualization API is loaded.
-	google.charts.setOnLoadCallback(drawChart);
-
-}
-// Callback that creates and populates a data table,
-// instantiates the pie chart, passes in the data and
-// draws it.
-function drawChart() {
-
-	$.get('events/api/all/', function(eventData) {
-		eventData = eventData.filter(function(ele) {
-			if (ele.score1 !== 0 || ele.score1 !== null && ele.score !== 0 || ele.score !== 0) {
-				return new Date(ele.date) < new Date()
-			} else {
-				console.log('scores not added')
-			}
-
-		})
-
-		eventData.forEach(function(ele) {
-			ele.Teams.forEach(function(teams) {
-				var teamData = $.extend({}, {
-					score1: ele.score1,
-					score2: ele.score,
-					game: ele.game,
-					date: ele.date
-				}, teams);
-
-
-				var date = new Date(teamData.date);
-				var d = date.getDate();
-				var m = date.getMonth() + 1;
-				var y = date.getFullYear();
-
-				var newDate = y + '-' + m + '-' + d;
-
-
-				// Create the data table.
-				var data = new google.visualization.DataTable();
-				data.addColumn('date', newDate);
-				data.addColumn('number', teamData.team);
-				// data.addColumn('number', team);
-
-
-				data.addRows([
-					[new Date(newDate), teamData.score1]
-				]);
-				console.log('data1', data)
-
-				// Set chart options
-				var options = {
-					'title': 'Teams comparison',
-					'width': 500,
-					'height': 300
-				};
-
-
-				// Instantiate and draw our chart, passing in some options.
-				var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
-				chart.draw(data, options);
-			})
-
-		})
-	})
-}
+});
 
 
 // calling functions
@@ -565,6 +491,6 @@ getTeams(teamDropdown);
 $(document).on('click', '.editbtn', makeContentEditable);
 $(document).on('click', '.savebtn', updateContent);
 $(document).on('click', '#allTeams', displayTeamEvents);
-$(document).on('click','.teamBtn', identifyPlayerTeam)
+$(document).on('click', '.teamBtn', identifyPlayerTeam)
 $('#players').on('click', displayTeamCheckbox)
 validation();

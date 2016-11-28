@@ -50,6 +50,37 @@
     <!-- /header -->
     <!-- header of the table displayed in the events route for the games table -->
 <div class="container">
+<div class="row">
+<div class="dropdown col-md-2">
+  <button class="btn btn-default dropdown-toggle team1" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+     Select Team
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu teamDropdown1" aria-labelledby="dropdownMenu1">
+    <li><a href="#">Red</a></li>
+    <li><a href="#">Blue</a></li>
+    <li><a href="#">Yellow</a></li>
+    <li><a href="#">Pink</a></li>
+    <li><a href="#">Purple</a></li>
+  </ul>
+</div>
+
+<div class="dropdown col-md-2">
+  <button class="btn btn-default dropdown-toggle team2" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    Select Team
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu teamDropdown2" aria-labelledby="dropdownMenu1">
+    <li><a href="#">Red</a></li>
+    <li><a href="#">Blue</a></li>
+    <li><a href="#">Yellow</a></li>
+    <li><a href="#">Pink</a></li>
+    <li><a href="#">Purple</a></li>
+  </ul>
+</div>
+</div>
+
+
   <h1 class="stats">Team Stats</h1>
   <!--Div that will hold the bar chart-->
     <div id="chart_div"></div>
@@ -71,7 +102,7 @@
     <!-- bootstrap stylesheet -->
     <script type="text/javascript" src="/script/bootstrap.min.js"></script>
     <!-- js -->
-    <script type="text/javascript" src="/script/script.js">
-    </script>
+    <script type="text/javascript" src="/script/script.js"></script>
+    <script type="text/javascript" src="/script/stats.js"></script>
   </body>
 </html>
