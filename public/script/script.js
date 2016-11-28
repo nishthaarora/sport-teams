@@ -41,7 +41,7 @@ $('#userSignUp').on('click', function(evt) {
 	$.post('/users/create', newUser)
 		.done(function(res) {
 			if (res.success) {
-				alert('user created');
+				window.location.href='/'
 			} else {
 				if (res.error) {
 					alert(res.error)

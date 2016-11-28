@@ -49,7 +49,7 @@ router.post('/create', function(req, res) {
 		if (users.length > 0 && users[0].email !== null) {
 			res.send({
 				success: false,
-				error: 'User already exists. Please go to login page.'
+				error: 'User already exists. Please login.'
 			});
 
 		} else if (users.length > 0 && users[0].email === null) {
@@ -81,10 +81,8 @@ router.post('/create', function(req, res) {
 			findAllTeams(req.body.team)
 				.then(function(data) {
 					return new Promise(function(resolve) {
-						data.forEach(function(ele) {
-							resolve(ele.id)
-						})
-					})
+						resolve(data[0].id);
+					});
 				}).then(function(teamId) {
 					bcrypt.genSalt(10, function(err, salt) {
 						bcrypt.hash(req.body.password, salt, function(err, hash) {
@@ -96,19 +94,19 @@ router.post('/create', function(req, res) {
 								email: req.body.email,
 								password: hash,
 								TeamId: teamId
+							}).then(function(user) {
+								// we save the logged in status to the session
+								req.session.logged_in = true;
+								res.cookie('logged_in', true);
+								// the user id to the session
+								res.cookie('user_name', user.fname);
+								res.json({
+									success: true
+								});
 							})
 						})
 					})
-				}).then(function(user) {
-					// we save the logged in status to the session
-					req.session.logged_in = true;
-					res.cookie('logged_in', true);
-					// the user id to the session
-					res.cookie('user_name', user.fname);
-					res.json({
-						success: true
-					});
-				})
+				});
 		}
 	})
 })
