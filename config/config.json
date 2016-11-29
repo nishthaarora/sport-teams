@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "",
+    "password": "test",
     "database": "Event",
     "host": "127.0.0.1",
     "dialect": "mysql"
@@ -17,7 +17,7 @@
     "username": "ce10vlnu9wgri2cc",
     "password": "yb0ubcfurnknsebb",
     "database": "mrcpefdmib1dmvmr",
-    "host": "127.0.0.1",
+    "host": "sulnwdk5uwjw1r2k.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     "dialect": "mysql"
   }
 }
