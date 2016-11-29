@@ -55,6 +55,7 @@ td[contenteditable="true"]{
     position:relative;
     display:inline-block;
     text-align:center;
+    margin-top:28px;
 
 }
 
@@ -74,15 +75,21 @@ td[contenteditable="true"]{
 .icon-section .glyphicon {
 	font-size: 30px;
 	color:purple;
+	padding-right: 10px;
 }
 
 .pageFooter {
+	position:fixed;
+	left:0;
+	bottom:0;
+	height: 70px;
+	width:100%;
 	background-color: purple;
-	height: 100px;
 	text-align: center;
 	color:white;
 	padding-top: 20px;
 }
+
 
 .mainHeader {
 	background-color: purple;
@@ -91,6 +98,7 @@ td[contenteditable="true"]{
 	line-height: 1.6;
 	font-weight: 300;
 	padding: 30px 10px 30px 10px;
+	margin-top:35px;
 }
 
 label.btn.btn-primary.active.Yellow, label.btn.btn-primary.Yellow {
@@ -103,7 +111,7 @@ label.btn.btn-primary.active.Yellow, label.btn.btn-primary.Yellow {
 	margin:2px 2px 2px 2px;
 }
 
-#loginForm {
+#loginPage {
 	margin-top:50px;
 }
 
@@ -118,7 +126,7 @@ label.btn.btn-primary.active.Yellow, label.btn.btn-primary.Yellow {
 #loginPage .logSite .noAccount {
 	border-top:4px solid #e5e5e5;
 	font-size: 14px;
-	margin:30px 0 100px;
+	margin:50px 0 45px;
 	padding-top: 15px;
 }
 
@@ -137,6 +145,10 @@ label.btn.btn-primary.active.Yellow, label.btn.btn-primary.Yellow {
 .footer-stats .fact {
 	font-size: 28px;
 	font-weight: 700;
+}
+
+.pageFooter {
+
 }
 
 .tableOutput {
