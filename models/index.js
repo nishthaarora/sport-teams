@@ -34,3 +34,8 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 module.exports = db;
+
+// used for switching to production env
+// export NODE_ENV='production'
+// used to run migration in production
+// sequelize db:migrate --prod
