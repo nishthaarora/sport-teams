@@ -71,6 +71,9 @@
 
           <div class="form-group clearfix">
           <button id="userSignIn" class="pull-right btn btn-success loginBtn" type="submit" data-loading-text="Log in">Log In</button>
+          <!-- fb login button -->
+          <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="false" onlogin="facebooklogin" data-scope="public_profile, email"></div>
+          <div id="fb-root"></div>
    </form>
 
       <!-- go to signup page -->
@@ -110,6 +113,36 @@
       Copywrite: 2016, Made by Dream Team.  All rights reserved.</div>
     </div>
 
+    <!-- // create modal and get more user info for players table when user signin with fbook a/c -->
+
+<script id="signup-modal" type="text/html">
+  <div class="modal fade">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">Team Info</h4>
+      </div>
+      <div class="modal-body">
+          <label for="exampleSelect1">Team Name</label>
+              <select class="form-control" id="teams" name="team">
+          {{#each teams}}
+              <option value="{{Team_name}}">{{Team_name}}</option>
+            {{/each}}
+            </select>
+            <br>
+          <p>Uniform Number<input id="uniform" type="number" name="uniformNum"></p>
+      </div>
+      <div class="modal-footer">
+        <button id="modalSubmit" type="button" class="btn btn-primary">Submit</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+</script>
+
 
 
 
@@ -121,8 +154,12 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>
     <!-- bootstrap stylesheet -->
     <script type="text/javascript" src="/script/bootstrap.min.js"></script>
+    <!-- fb login js -->
+    <script type="text/javascript" src="/script/faceBookLogin.js"></script>
+     <!-- user login js -->
+    <script type="text/javascript" src="/script/userLogin.js"></script>
     <!-- js -->
-    <script type="text/javascript" src="/script/script.js">
-    </script>
+    <script type="text/javascript" src="/script/script.js"></script>
+
   </body>
 </html>

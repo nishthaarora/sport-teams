@@ -10,8 +10,9 @@ var models = require('./models');
 var app = express();
 var event_controller = require('./controller/events');
 var team_controller = require('./controller/team');
-var user_controller = require('./controller/user')
-var html_routes = require('./controller/html-routes')
+var user_controller = require('./controller/user');
+var html_routes = require('./controller/html-routes');
+var facebook_login = require('./controller/fbLogin');
 
 //blocksheader from containing information about our server
 app.disable('x-powered-by');
@@ -41,6 +42,7 @@ app.use('/', html_routes);
 app.use('/users', user_controller);
 app.use('/events', event_controller);
 app.use('/teams', team_controller);
+app.use('/fb', facebook_login);
 
 models.sequelize.query('SET FOREIGN_KEY_CHECKS = 0');
 models.sequelize.sync();

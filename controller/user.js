@@ -8,11 +8,11 @@ var bcrypt = require('bcryptjs');
 router.post('/login', function(req, res) {
 	return models.Player.findOne({
 		where: {
-			email: req.body.email
+			email: req.body.email.toLowerCase()
 		}
 	}).then(function(user) {
 		if (user === null) {
-			res.redirect('/users/signin')
+			res.send({suxxess:false})
 		}
 		bcrypt.compare(req.body.password, user.password, function(err, result) {
 			if (result === true) {
@@ -56,7 +56,7 @@ router.post('/create', function(req, res) {
 			bcrypt.genSalt(10, function(err, salt) {
 				bcrypt.hash(req.body.password, salt, function(err, hash) {
 					return models.Player.update({
-						email: req.body.email,
+						email: req.body.email.toLowerCase(),
 						password: hash
 					}, {
 						where: {
@@ -91,7 +91,7 @@ router.post('/create', function(req, res) {
 								lname: req.body.lname.toLowerCase(),
 								team: req.body.team,
 								uniformNum: req.body.uniformNum,
-								email: req.body.email,
+								email: req.body.email.toLowerCase(),
 								password: hash,
 								TeamId: teamId
 							}).then(function(user) {

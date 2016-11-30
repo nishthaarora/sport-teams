@@ -18,6 +18,10 @@ $('#userSignIn').on('click', function(evt) {
 			if (response.success) {
 				window.location.href = '/events';
 			}
+			else {
+				alert('user doesnot exist, please signup')
+				window.location.href = '/signup'
+			}
 		});
 })
 
@@ -63,7 +67,7 @@ $('#signOut').on('click', function(evt) {
 
 
 // making scores for the teams and events editable so that user can change the scores of the past events
-function makeContentEditable(event) {
+function createEditButton(event) {
 	event.preventDefault()
 	$(this).closest('tr').children('td[contenteditable]').attr('contenteditable', 'true');
 
@@ -285,15 +289,6 @@ function getTeams(callback) {
 	})
 }
 
-// get teams specific data with a promise
-// function getTeams(callback) {
-// 	return $.get('/teams/allteams', function(teamData){
-// 	})
-// }
-// getTeams().then(teamDropdown)
-
-
-
 // making an api call to retrive team related data and displaying it in tables format
 
 function displayTeamEvents() {
@@ -410,11 +405,6 @@ function validation() {
 			$('#score1').attr('required', true);
 			$('#score2').attr('required', true);
 		}
-		// else if(type === 'Game' || new Date(date) >= new Date()){
-		// 		$('#secondTeam').removeClass('hidden');
-		// 		$('#score1').addClass('hidden');
-		// 		$('#score2').addClass('hidden');
-		// }
 		else {
 			$('#secondTeam').addClass('hidden');
 			$('#score1').addClass('hidden');
@@ -440,13 +430,6 @@ $('#eventSubmit').on('click', function(evt) {
 			comment: $('#comment').val().trim(),
 			team: [$('#associatedTeam').val().trim(), $('#associatedTeam2').val().trim()]
 		}
-		// console.log(newEvent.date)
-
-	// 			if(newEvent.type === "" || newEvent.score1 === "" || newEvent.score = "" || newEvent.team[0] === "" || newEvent.team[1] === ""){
-	// 			return false;
-	// }
-
-
 	$.post('/events/api/input', newEvent)
 		.done(function(data) {
 			alert('event added');
@@ -488,7 +471,7 @@ $('.getDetails').on('click', function() {
 // calling functions
 displayGameDropdown();
 getTeams(teamDropdown);
-$(document).on('click', '.editbtn', makeContentEditable);
+$(document).on('click', '.editbtn', createEditButton);
 $(document).on('click', '.savebtn', updateContent);
 $(document).on('click', '#allTeams', displayTeamEvents);
 $(document).on('click', '.teamBtn', identifyPlayerTeam)
