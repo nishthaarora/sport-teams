@@ -14,7 +14,9 @@ router.post('/login', function(req, res) {
 		}
 	}).then(function(user) {
 		if (user === null) {
-			res.send({suxxess:false})
+			res.send({
+				suxxess: false
+			})
 		}
 		bcrypt.compare(req.body.password, user.password, function(err, result) {
 			if (result === true) {
@@ -59,36 +61,39 @@ router.post('/create', function(req, res) {
 			bcrypt.genSalt(10, function(err, salt) {
 				bcrypt.hash(req.body.password, salt, function(err, hash) {
 					return models.Player.update({
-						email: req.body.email.toLowerCase(),
-						password: hash
-					}, {
-						where: {
-							fname: req.body.fname.toLowerCase(),
-							lname: req.body.lname.toLowerCase(),
-							team: req.body.team,
-							uniformNum: req.body.uniformNum
-						}
-					}).then( function(result) {
+							email: req.body.email.toLowerCase(),
+							password: hash
+						}, {
+							where: {
+								fname: req.body.fname.toLowerCase(),
+								lname: req.body.lname.toLowerCase(),
+								team: req.body.team,
+								uniformNum: req.body.uniformNum
+							}
+						}).then(function(result) {
 							return models.Player.findOne({
 								where: {
 									email: req.body.email
 								}
 							})
 						}).then(function(user) {
-						// we save the logged in status to the session
-								req.session.logged_in = true;
-								res.cookie('logged_in', true);
-								// the user id to the session
-								res.cookie('user_name', user.fname);
-								res.cookie('userTeam', user.team);
-								res.json({success: true})
+							// we save the logged in status to the session
+							req.session.logged_in = true;
+							res.cookie('logged_in', true);
+							// the user id to the session
+							res.cookie('user_name', user.fname);
+							res.cookie('userTeam', user.team);
+							res.json({
+								success: true
+							})
 
-					}), function( err ) {
-						res.json({
-							success: false,
-							error: err
-						})
-					};
+						}),
+						function(err) {
+							res.json({
+								success: false,
+								error: err
+							})
+						};
 				})
 			})
 

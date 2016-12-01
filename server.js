@@ -19,18 +19,24 @@ app.disable('x-powered-by');
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({
+	extended: true
+}));
 app.use(bodyParser.text());
-app.use(bodyParser.json({type:'application/vnd.api+json'}));
+app.use(bodyParser.json({
+	type: 'application/vnd.api+json'
+}));
 app.use(express.static(process.cwd() + '/public'));
 
 // allow sessions
 app.use(session({
 	secret: 'app',
-	cookie: { maxAge: 60000} ,
+	cookie: {
+		maxAge: 60000
+	},
 	resave: true,
-  saveUninitialized: true
-	}));
+	saveUninitialized: true
+}));
 app.use(cookieParser());
 
 
@@ -47,6 +53,6 @@ app.use('/fb', facebook_login);
 models.sequelize.query('SET FOREIGN_KEY_CHECKS = 0');
 models.sequelize.sync();
 
-app.listen(process.env.PORT || 3000, function(){
-  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+app.listen(process.env.PORT || 3000, function() {
+	console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });

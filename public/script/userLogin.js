@@ -55,27 +55,27 @@ $('#userSignUp').on('click', function(evt) {
 		password: $('#pass').val().trim()
 	}
 
-if(validateSignUpForm(newUser)) {
-	$.post('/users/create', newUser)
-		.done(function(res) {
-			if (res.success) {
-				window.location.href = '/'
-			} else {
-				if (res.error) {
-					alert(res.error)
+	if (validateSignUpForm(newUser)) {
+		$.post('/users/create', newUser)
+			.done(function(res) {
+				if (res.success) {
+					window.location.href = '/'
 				} else {
-					alert('Some error occured.');
+					if (res.error) {
+						alert(res.error)
+					} else {
+						alert('Some error occured.');
+					}
 				}
-			}
-		});
-} else {
-	return false;
-}
+			});
+	} else {
+		return false;
+	}
 });
 
 
-function validateSignUpForm(newUser){
-	if(newUser.fname === "" || newUser.lname === "" || newUser.uniformNum === "" || newUser.email === "" || newUser.password === "") {
+function validateSignUpForm(newUser) {
+	if (newUser.fname === "" || newUser.lname === "" || newUser.uniformNum === "" || newUser.email === "" || newUser.password === "") {
 		$('#firstName').attr('required', 'required');
 		$('#lastName').attr('required', 'required');
 		$('#uniformNumber').attr('required', 'required');

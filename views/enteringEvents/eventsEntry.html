@@ -14,8 +14,8 @@
 		<link href="../assets/css/bootstrap-switch.min.css" rel="stylesheet">
 		<!-- internal stylesheet -->
 		<link rel="stylesheet" type="text/css" href="../assets/css/style.css">
-		    <!--Load the AJAX API-->
-    <!-- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> -->
+		<!--Load the AJAX API-->
+		<!-- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> -->
 	</head>
 	<body>
 		<!--Nav Bar header -->
@@ -36,14 +36,14 @@
 				<div class="container">
 					<div class="row">
 						<!-- <div class="col-md-3"> -->
-							<a class="homeLink col-md-3"  role="navigation" href="/"><span class="glyphicon glyphicon-home"></span></a>
-							  <button class="btn btn-primary events-btn"><a href="/events">Events</a></button>
-              <button class="btn btn-primary stats-btn"><a href="stats">Stats</a></button>
-              <button class="btn btn-primary addplayers-btn"><a href="addplayers">Add Players</a></button>
+						<a class="homeLink col-md-3"  role="navigation" href="/"><span class="glyphicon glyphicon-home"></span></a>
+						<button class="btn btn-primary events-btn"><a href="/events">Events</a></button>
+						<button class="btn btn-primary stats-btn"><a href="stats">Stats</a></button>
+						<button class="btn btn-primary addplayers-btn"><a href="addplayers">Add Players</a></button>
 					</div>
+				</div>
 			</div>
-		</div>
-		<div class="container">
+			<div class="container">
 				<div class="row">
 					<div class="col-lg-12">
 						<h1>Enter New Event</h1>
@@ -65,7 +65,7 @@
 									<input id="endTIme" type="time" name="end_time" placeholder="end_time">
 								</label>
 							</div>
-								<div class="form-group">
+							<div class="form-group">
 								<label for="exampleSelect1">Event Type</label>
 								<select class="form-control" id="game" name="type">
 									<option>Football</option>
@@ -75,7 +75,6 @@
 									<option>Hockey</option>
 								</select>
 							</div>
-
 							<div class="form-group">
 								<label for="exampleSelect1">Event Type</label>
 								<select class="form-control" id="eventType" name="type">
@@ -95,11 +94,11 @@
 							</div>
 							<div>
 								<label>
-								Location of event
+									Location of event
 									<input id="location" type="text" name="location" placeholder="Location of the event">
 								</label>
 								<br>
-									<label>
+								<label>
 									<textarea id="comment" type="text" name="comment" placeholder="Additional comments"></textarea>
 								</label>
 							</div>
@@ -117,7 +116,7 @@
 							<div class="form-group hidden" id="secondTeam">
 								<label for="exampleSelect1">Team Name</label>
 								<select class="form-control" id="associatedTeam2" name="team">
-								<option>Select your Team</option>
+									<option>Select your Team</option>
 									<option>Blue</option>
 									<option>Red</option>
 									<option>Yellow</option>
@@ -130,13 +129,11 @@
 					</div>
 				</div>
 			</div>
-			</div>
+		</div>
 		<!--Footer describing team developers -->
 		<div class="pageFooter">
 			<div class = "container">
 			Copywrite: 2016, Made by Dream Team.  All rights reserved.</div>
-
-
 		</div>
 		<!-- jquery -->
 		<script type="text/javascript" src="/script/jquery.js"></script>

@@ -16,78 +16,78 @@ router.get('/api/allteams', function(req, res) {
 	})
 	// team specific events
 router.get('/api/:team', function(req, res) {
-		var team = req.params.team;
-		models.Team.findAll({
-			where: {
-				Team_name: team
-			},
-			include: [models.Event]
-		}).then(function(allTeams) {
-			allTeams = formatDateInTeams(allTeams)
-			return res.json(allTeams)
-		});
-	})
+	var team = req.params.team;
+	models.Team.findAll({
+		where: {
+			Team_name: team
+		},
+		include: [models.Event]
+	}).then(function(allTeams) {
+		allTeams = formatDateInTeams(allTeams)
+		return res.json(allTeams)
+	});
+})
 
 // getPlayers()
-router.get('/api/players/:team', function(req, res){
+router.get('/api/players/:team', function(req, res) {
 	var team = req.params.team;
 	return models.Player.findAll({
 		where: {
 			team: team
 		}
-	}).then(function(players){
+	}).then(function(players) {
 		return res.json(players)
 	})
 })
 
 
-	// adding team players
+// adding team players
 router.post('/api/addplayers', function(req, res) {
-			var newPlayer = req.body;
-			return models.Player.findAll({
-				where: {
-					fname: newPlayer.fname.toLowerCase(),
-					lname: newPlayer.lname.toLowerCase(),
-					team: newPlayer.team,
-					uniformNum: newPlayer.uniformNum
-				}
-			}).then(function(users) {
-				if (users.length > 0) {
-					res.send({
-						success: false
-					})
-				} else {
-					findAllTeams(newPlayer)
-						.then(function(data) {
-							return new Promise(function(resolve) {
-								data.forEach(function(ele) {
-									resolve(ele.id)
-								})
-							})
-						}).then(function(teamId) {
-								return models.Player.create({
-									fname: newPlayer.fname.toLowerCase(),
-									lname: newPlayer.lname.toLowerCase(),
-									team: newPlayer.team,
-									uniformNum: newPlayer.uniformNum,
-									TeamId: teamId
-								})
-							}).then(function(player) {
-								console.log(player)
-								res.send({
-									success: true
-								})
-							})
-						}
+	var newPlayer = req.body;
+	return models.Player.findAll({
+		where: {
+			fname: newPlayer.fname.toLowerCase(),
+			lname: newPlayer.lname.toLowerCase(),
+			team: newPlayer.team,
+			uniformNum: newPlayer.uniformNum
+		}
+	}).then(function(users) {
+		if (users.length > 0) {
+			res.send({
+				success: false
 			})
-		})
-
-			function findAllTeams(newPlayer) {
-				return models.Team.findAll({
-					where: {
-						Team_name: newPlayer.team
-					},
-					attributes: ['id']
+		} else {
+			findAllTeams(newPlayer)
+				.then(function(data) {
+					return new Promise(function(resolve) {
+						data.forEach(function(ele) {
+							resolve(ele.id)
+						})
+					})
+				}).then(function(teamId) {
+					return models.Player.create({
+						fname: newPlayer.fname.toLowerCase(),
+						lname: newPlayer.lname.toLowerCase(),
+						team: newPlayer.team,
+						uniformNum: newPlayer.uniformNum,
+						TeamId: teamId
+					})
+				}).then(function(player) {
+					console.log(player)
+					res.send({
+						success: true
+					})
 				})
-			}
-			module.exports = router;
+		}
+	})
+})
+
+function findAllTeams(newPlayer) {
+	return models.Team.findAll({
+		where: {
+			Team_name: newPlayer.team
+		},
+		attributes: ['id']
+	})
+}
+module.exports = router;

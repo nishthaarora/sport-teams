@@ -13,9 +13,8 @@
 		<link href="../assets/css/bootstrap-switch.min.css" rel="stylesheet">
 		<!-- internal stylesheet -->
 		<link rel="stylesheet" type="text/css" href="../assets/css/style.css">
-		    <!--Load the AJAX API-->
-    <!-- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> -->
-
+		<!--Load the AJAX API-->
+		<!-- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> -->
 	</head>
 	<body>
 		<!-- login and signup button  -->
@@ -37,143 +36,134 @@
 				<div class="container">
 					<div class="row mainHeadRow">
 						<!-- <div class="col-md-3"> -->
-							<a class="homeLink col-md-3"  role="navigation" href="/"><span class="glyphicon glyphicon-home"></span></a>
-							Past Events
-							<input id="pastEvents" type="checkbox" name="my-checkbox" checked>
-							<!-- display team players -->
-							<button id="players" class="btn btn-primary stats-btn"><a href="/events">Team Players</a></button>
-							<!-- display stats -->
-							<button id="stats" class="btn btn-primary stats-btn"><a href="/stats">Stats</a></button>
+						<a class="homeLink col-md-3"  role="navigation" href="/"><span class="glyphicon glyphicon-home"></span></a>
+						Past Events
+						<input id="pastEvents" type="checkbox" name="my-checkbox" checked>
+						<!-- display team players -->
+						<button id="players" class="btn btn-primary stats-btn"><a href="/events">Team Players</a></button>
+						<!-- display stats -->
+						<button id="stats" class="btn btn-primary stats-btn"><a href="/stats">Stats</a></button>
 						<!-- </div> -->
 					</div>
 				</div>
 			</div>
 		</div>
-
 		<!-- /header -->
 		<!-- header of the table displayed in the events route for the games table -->
-<div class="container">
-	<h1 class="eventHeading">Upcoming Games</h1>
-<div class="row">
-        <div class="col-md-12">
-            <table class="table eventTable tablesorter">
-                <thead>
-                    <tr>
-												<th>Date</th>
-												<th>Game</th>
-												<th>Start Time</th>
-												<th>End Time</th>
-												<th>Type</th>
-												<th>Location</th>
-												<th>Comment</th>
-												<th>Team1</th>
-												<th>Team2</th>
-												<th>Score1</th>
-												<th>Score2</th>
-
-                    </tr>
-                </thead>
-                <tbody id="game"></tbody>
-            </table>
-        </div>
-    </div>
+		<div class="container">
+			<h1 class="eventHeading">Upcoming Games</h1>
+			<div class="row">
+				<div class="col-md-12">
+					<table class="table eventTable tablesorter">
+						<thead>
+							<tr>
+								<th>Date</th>
+								<th>Game</th>
+								<th>Start Time</th>
+								<th>End Time</th>
+								<th>Type</th>
+								<th>Location</th>
+								<th>Comment</th>
+								<th>Team1</th>
+								<th>Team2</th>
+								<th>Score1</th>
+								<th>Score2</th>
+							</tr>
+						</thead>
+					<tbody id="game"></tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<!-- table header for upcoming practices -->
+	<div class="container">
+		<h1 class="eventHeading">Practice Schedule</h1>
+		<div class="row">
+			<div class="col-md-12">
+				<table class="table eventTable tablesorter">
+					<thead>
+						<tr>
+							<th>Date</th>
+							<th>Game</th>
+							<th>Start Time</th>
+							<th>End Time</th>
+							<th>Type</th>
+							<th>Location</th>
+							<th>Comment</th>
+							<th>Team1</th>
+						</tr>
+					</thead>
+				<tbody id="practice"></tbody>
+			</table>
+		</div>
+	</div>
 </div>
-
-<!-- table header for upcoming practices -->
-<div class="container">
-	<h1 class="eventHeading">Practice Schedule</h1>
-<div class="row">
-        <div class="col-md-12">
-            <table class="table eventTable tablesorter">
-                <thead>
-                    <tr>
-												<th>Date</th>
-												<th>Game</th>
-												<th>Start Time</th>
-												<th>End Time</th>
-												<th>Type</th>
-												<th>Location</th>
-												<th>Comment</th>
-												<th>Team1</th>
-                    </tr>
-                </thead>
-                <tbody id="practice"></tbody>
-            </table>
-        </div>
-    </div>
-</div>
-
 <!-- rows for the table which will be populated on the click of dropdown menu -->
 <script id="template" type="text/html">
 				{{#each events}}
 					<tr data-id={{id}}>
-						<td>{{date}}</td>
-						<td>{{game}}</td>
-						<td>{{start_time}}</td>
-						<td>{{end_time}}</td>
-						<td>{{type}}</td>
-						<td>{{location}}</td>
-						<td>{{comment}}</td>
-							{{#each Teams}}
-								<td>{{Team_name}}</td>
-							{{/each}}
-						<td class="score score1" contenteditable="false">{{score1}}</td>
-						<td class="score score2" contenteditable="false">{{score}}</td>
-						<td><button class="editbtn">Edit</button></td>
-						<td><button class="savebtn">Save</button></td>
+							<td>{{date}}</td>
+							<td>{{game}}</td>
+							<td>{{start_time}}</td>
+							<td>{{end_time}}</td>
+							<td>{{type}}</td>
+							<td>{{location}}</td>
+							<td>{{comment}}</td>
+								{{#each Teams}}
+									<td>{{Team_name}}</td>
+								{{/each}}
+							<td class="score score1" contenteditable="false">{{score1}}</td>
+							<td class="score score2" contenteditable="false">{{score}}</td>
+							<td><button class="editbtn">Edit</button></td>
+							<td><button class="savebtn">Save</button></td>
 					</tr>
 					{{/each}}
 </script>
-
-
-
 <!-- team template -->
 <div class="container">
 	<h1 class="teamTable">Upcoming Games</h1>
-<div class="row">
-        <div class="col-md-12">
-            <table class="table teamTable tablesorter">
-                <thead>
-                    <tr>
-												<th>Team Name</th>
-												<th>Game</th>
-												<th>Date</th>
-												<th>Start Time</th>
-												<th>Type</th>
-												<th>Location</th>
-												<th>Comment</th>
-												<th>Score1</th>
-												<th>Score2</th>
-                    </tr>
-                </thead>
-                <tbody id="teamGame"></tbody>
-            </table>
-        </div>
-    </div>
+	<div class="row">
+		<div class="col-md-12">
+			<table class="table teamTable tablesorter">
+				<thead>
+					<tr>
+						<th>Team Name</th>
+						<th>Game</th>
+						<th>Date</th>
+						<th>Start Time</th>
+						<th>Type</th>
+						<th>Location</th>
+						<th>Comment</th>
+						<th>Score1</th>
+						<th>Score2</th>
+					</tr>
+				</thead>
+			<tbody id="teamGame"></tbody>
+		</table>
+	</div>
 </div>
-
+</div>
 <div class="container">
 <h1 class="teamTable">Practice Schedule</h1>
 <div class="row">
-        <div class="col-md-12">
-            <table class="table teamTable tablesorter">
-                <thead>
-                    <tr>
-												<th>Team Name</th>
-												<th>Game</th>
-												<th>Date</th>
-												<th>Start Time</th>
-												<th>Type</th>
-												<th>Location</th>
-												<th>Comment</th>
-                    </tr>
-                </thead>
-                <tbody id="teamPractice"></tbody>
-            </table>
-        </div>
-    </div>
+	<div class="col-md-12">
+		<table class="table teamTable tablesorter">
+			<thead>
+				<tr>
+					<th>Team Name</th>
+					<th>Game</th>
+					<th>Date</th>
+					<th>Start Time</th>
+					<th>Type</th>
+					<th>Location</th>
+					<th>Comment</th>
+				</tr>
+			</thead>
+		<tbody id="teamPractice"></tbody>
+	</table>
 </div>
-
+</div>
+</div>
 <!-- template for teams info table-->
 <script id="templateTeam" type="text/html">
 				{{#each events}}
@@ -192,29 +182,26 @@
 					</tr>
 					{{/each}}
 </script>
-
-
-		<!-- players template -->
-	<div class="container playTeam">
+<!-- players template -->
+<div class="container playTeam">
 <h1 class="playerHeading">Players</h1>
 <div class="row">
-        <div class="col-md-12">
-            <table class="table playerTable tablesorter">
-                <thead>
-                    <tr>
-												<th>First Name</th>
-												<th>Last Name</th>
-												<th>Team</th>
-												<th>Uniform Num</th>
-												<th>Email</th>
-                    </tr>
-                </thead>
-                <tbody id="teamPlayers"></tbody>
-            </table>
-        </div>
-    </div>
+<div class="col-md-12">
+	<table class="table playerTable tablesorter">
+		<thead>
+			<tr>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Team</th>
+				<th>Uniform Num</th>
+				<th>Email</th>
+			</tr>
+		</thead>
+	<tbody id="teamPlayers"></tbody>
+</table>
 </div>
-
+</div>
+</div>
 <!-- template for teams info table-->
 <script id="templatePlayers" type="text/html">
 				{{#each players}}
@@ -227,42 +214,38 @@
 					</tr>
 					{{/each}}
 </script>
-
 <!--creating buttons with handlebars in Team players tab to display team players and their info -->
 <div class="teamsButtons container"></div>
-	<script id="showTeamsBtn" type="text/html">
-		<!-- <div class="playersDiv container"></div> -->
-			<h1 class="teamBtnHeading">Teams</h1>
-			{{#each team}}
-			<button class="btn btn-primary active pTeam">
-			{{Team_name}}
-			</button>
-			{{/each}}
-	</script>
-
-
-		<br>
-
-		<!--Footer describing team developers -->
-		<div class="pageFooter">
-			<div class = "container">
-			Copywrite: 2016, Made by Dream Team.  All rights reserved.</div>
-			<a id="newEvent" class="new-event col-md-2" href="/input">Enter new events</a>
-			<a id="enterPlayer" class="enter-player col-md-1" href="/addplayers">Add players</a>
-		</div>
-		<!-- jquery -->
-		<script type="text/javascript" src="/script/jquery.js"></script>
-		<!-- bootstrap Switch -->
-		<script type="text/javascript" src="/script/bootstrap-switch.min.js"></script>
-		<!-- handlebars cdn -->
-		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>
-		<!-- bootstrap stylesheet -->
-		<script type="text/javascript" src="/script/bootstrap.min.js"></script>
-		     <!-- user login js -->
-    <script type="text/javascript" src="/script/userLogin.js"></script>
-    <!-- buttons js -->
-    <script type="text/javascript" src="/script/createAllButtons.js"></script>
-		<!-- js -->
-		<script type="text/javascript" src="/script/script.js"></script>
-	</body>
+<script id="showTeamsBtn" type="text/html">
+<!-- <div class="playersDiv container"></div> -->
+<h1 class="teamBtnHeading">Teams</h1>
+{{#each team}}
+<button class="btn btn-primary active pTeam">
+{{Team_name}}
+</button>
+{{/each}}
+</script>
+<br>
+<!--Footer describing team developers -->
+<div class="pageFooter">
+<div class = "container">
+Copywrite: 2016, Made by Dream Team.  All rights reserved.</div>
+<a id="newEvent" class="new-event col-md-2" href="/input">Enter new events</a>
+<a id="enterPlayer" class="enter-player col-md-1" href="/addplayers">Add players</a>
+</div>
+<!-- jquery -->
+<script type="text/javascript" src="/script/jquery.js"></script>
+<!-- bootstrap Switch -->
+<script type="text/javascript" src="/script/bootstrap-switch.min.js"></script>
+<!-- handlebars cdn -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>
+<!-- bootstrap stylesheet -->
+<script type="text/javascript" src="/script/bootstrap.min.js"></script>
+<!-- user login js -->
+<script type="text/javascript" src="/script/userLogin.js"></script>
+<!-- buttons js -->
+<script type="text/javascript" src="/script/createAllButtons.js"></script>
+<!-- js -->
+<script type="text/javascript" src="/script/script.js"></script>
+</body>
 </html>
