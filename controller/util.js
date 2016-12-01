@@ -20,7 +20,6 @@ function formatDateInArray(allEvents) {
 // @param allTeams is coming from controller team.js file
 function formatDateInTeams(allTeams) {
 	allTeams.forEach(function(ele) {
-		// console.log('ele', ele)
 		ele.Events.forEach(function(event) {
 			var date = new Date(event.dataValues.date);
 			var d = date.getDate() + 1;
