@@ -1,6 +1,5 @@
 // this file is making all the api calls
 
-
 /* Events route has a dropdown with which user can see the events which are upcoming in the form of a 2 different
 tables by selecting the game or "all events" from the dropdown menu
 */
@@ -57,13 +56,22 @@ function displayEvents(eventData) {
 	$('.teamsButtons').hide();
 }
 
+// setting default layout for the user according to the userTeam
+function setDefaultLayout() {
+	var uTeam = getCookie('userTeam');
+	displayTeamEvents(uTeam);
+}
 
 // making an api call to retrive team related data and displaying it in tables format
-function displayTeamEvents() {
+// uteam is coming from setDefaultLayout()function which is fetching userTeam cookie
+function displayTeamEvents(uTeam) {
 	var team = $('.teamBtn').text()
 	var teamEventsEndpoint = 'teams/api/';
 	var userTeam = getCookie('userTeam');
 	var code = $('#templateTeam').html();
+	if (typeof uTeam === 'string') {
+		team = uTeam;
+	}
 	if (team === "all teams") {
 		team = "allteams";
 	}
@@ -107,11 +115,16 @@ function displayTeamEvents() {
 }
 
 // functionality on click of team buttons will show all the players which belongs to that team
-function displayPlayers(evt) {
-	evt.preventDefault();
+// uTeam is coming from createAllButtons.js file createTeamButtons() function. Where we are getting uteam from the cookie
+function displayPlayers(uTeam) {
+
 	$('#teamPlayers').html('')
 	var team = $(this).text();
 	var code = $('#templatePlayers').html();
+
+	if(typeof uTeam === 'string') {
+		team = uTeam
+	}
 
 	$.get('teams/api/players/' + team, function(players) {
 		var template = Handlebars.compile(code);
@@ -148,6 +161,7 @@ function updateContent() {
 		})
 }
 
+$(document).ready(setDefaultLayout)
 $(document).on('click', '.savebtn', updateContent);
 $(document).on('click', '.pTeam', displayPlayers)
 $(document).on('click', '#allTeams li', displayTeamEvents);

@@ -84,8 +84,10 @@
 	// these are the buttons in "team Players" tab which defines all the teams and shows their players related data"
 	function createTeamButtons(evt) {
 		evt.preventDefault();
-		$('.teamsButtons').html('')
+			var uTeam = getCookie('userTeam');
+			displayPlayers(uTeam);
 
+		$('.teamsButtons').html('')
 		var code = $('#showTeamsBtn').html()
 		$.get('teams/api/allteams', function(data) {
 			var template = Handlebars.compile(code)
