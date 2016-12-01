@@ -55,27 +55,43 @@ function signUpModal(userId) {
     var template = Handlebars.compile(code);
     var html = template({teams: data});
     $("body").append(html);
-    $(".modal").modal('show');
+    $('.modal').modal({backdrop: 'static',keyboard:false, show: true})
     $(".modal").attr('data-id', userId);
-
   })
+     // $('body').on('click', function(e){
+    // })
+
 }
 
 // getting values from the modal
 function getModalValues() {
-  window.location.href = '/events'
   var userId = $('.modal').data('id')
   var info = {
     team: $('#teams').val(),
     uniformNum: $('#uniform').val(),
     id: userId
   }
-  updatePlayersTable(info)
+
+ if(validateModalValues(info)) {
+   updatePlayersTable(info)
+   window.location.href = '/events'
+  } else {
+    $('#teams').attr('required', "required");
+    $('#uniform').attr('required', "required");
+
+    return false;
+ }
 }
 
 // validation modal values which user has provided
-function validateModalValues(){
-
+function validateModalValues(info){
+  console.log('info', info)
+  console.log(info.uniformNum)
+  if(info.uniformNum === "") {
+    return false;
+  } else {
+    return true;
+  }
 }
 
 //making a post request on the api to update players table with users provided info

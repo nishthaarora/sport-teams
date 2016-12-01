@@ -79,7 +79,7 @@ td[contenteditable="true"]{
 }
 
 .pageFooter {
-	position:fixed;
+	/*position:fixed;*/
 	left:0;
 	bottom:0;
 	height: 70px;
@@ -155,4 +155,8 @@ label.btn.btn-primary.active.Yellow, label.btn.btn-primary.Yellow {
 	margin-top:30px;
 }
 
+/* style all elements with a required attribute */
+input:required, select:required {
+  box-shadow: 4px 4px 20px rgba(200, 0, 0, 0.85);
+}
 

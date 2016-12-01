@@ -1,85 +1,15 @@
 var games = ['all games', 'football', 'baseball', 'basketball', 'tennis', 'hockey', 'cycle'];
 var pastEventsFlag = true;
 
-// signIn and signUp form and signout
-$('#logIn').on('click', function(evt) {
-		evt.preventDefault();
-		window.location.href = '/signin';
-	})
-	// taking signin values
-$('#userSignIn').on('click', function(evt) {
-	evt.preventDefault();
-	var existingUser = {
-		email: $('#userEmail').val().trim(),
-		password: $('#userPassword').val().trim()
-	}
-	$.post('/users/login', existingUser)
-		.done(function(response) {
-			if (response.success) {
-				window.location.href = '/events';
-			}
-			else {
-				alert('user doesnot exist, please signup')
-				window.location.href = '/signup'
-			}
-		});
-})
-
-// taking signup values
-$('#signUp').on('click', function(evt) {
-		evt.preventDefault();
-		window.location.href = '/signup';
-	})
-	// signup button
-$('#userSignUp').on('click', function(evt) {
-	evt.preventDefault();
-	var newUser = {
-		fname: $('#firstName').val().trim(),
-		lname: $('#lastName').val().trim(),
-		team: $('#teamPlayer').val().trim(),
-		uniformNum: $('#uniformNumber').val().trim(),
-		email: $('#em').val().trim(),
-		password: $('#pass').val().trim()
-	}
-
-	$.post('/users/create', newUser)
-		.done(function(res) {
-			if (res.success) {
-				window.location.href='/'
-			} else {
-				if (res.error) {
-					alert(res.error)
-				} else {
-					alert('Some error occured.');
-				}
-			}
-		});
-});
-
-// signout
-$('#signOut').on('click', function(evt) {
-	evt.preventDefault();
-	$.get('/users/signout', function(data) {}).done(function() {
-
-	});
-	window.location.href = '/';
-})
-
-
 // making scores for the teams and events editable so that user can change the scores of the past events
 function createEditButton(event) {
 	event.preventDefault()
 	$(this).closest('tr').children('td[contenteditable]').attr('contenteditable', 'true');
-
 	$(this).html($(this).html() == 'Edit' ? 'Edit' : 'Edit');
-
-
 }
-
 
 // making ajax call to update data in database when user click on edit and save the edited scores data
 function updateContent() {
-
 	var id = $(this).closest('tr').data('id');
 	var scores = {
 		score1: $(this).closest('tr').find('.score1').text(),
@@ -91,9 +21,7 @@ function updateContent() {
 		.done(function() {
 			alert('Update sucessful')
 		})
-
 }
-
 
 
 // function for creating dropdown menu in the navbar
@@ -167,9 +95,13 @@ function displayTeamCheckbox(evt) {
 			buttonLabel.append(buttonInput)
 		})
 	})
+	$('.playersDiv').removeClass('hidden');
+	$('.eventTable').addClass('hidden');
+	$('.teamTable').addClass('hidden');
+
 }
 // functionality on click of team buttons will show all the players which belongs to that team
-function identifyPlayerTeam(evt) {
+function selectTeam(evt) {
 	evt.preventDefault();
 	$('#teamPlayers').html('')
 	var team = $(this).text();
@@ -177,13 +109,10 @@ function identifyPlayerTeam(evt) {
 	$.get('teams/api/players/' + team, function(players) {
 		var template = Handlebars.compile(code);
 		players.forEach(function(ele) {
-			console.log(ele)
+			// console.log(ele)
 			var html = template({
 				players: [ele]
 			});
-			$('.players').removeClass('hidden')
-			$('.playerTable').removeClass('hidden')
-			$('#teamPlayers').append(html)
 		})
 
 
@@ -235,14 +164,13 @@ $(document).on('click', '#allEvents li', function(evt) {
 					$("#practice").append(html);
 					$('#practice').children('tr').children('td').find('.editbtn').addClass('hidden');
 					$('#practice').children('tr').children('td').find('.savebtn').addClass('hidden');
-					// $('#practice').children('tr').children('td').find('.score').addClass('hidden');
-					// $('#practice').children('tr').children('td').find('.score2').addClass('hidden');
 				}
 
 			})
 			$('.eventTable').show()
 			$('.eventTable').removeClass('hidden');
 			$('.teamTable').addClass('hidden');
+			$('.playersDiv').addClass('hidden')
 		})
 
 
@@ -271,13 +199,14 @@ $(document).on('click', '#allEvents li', function(evt) {
 					$('#game').append(html);
 				} else {
 					$("#practice").append(html);
-					$('#practice').children('tr').children('td').find('.editbtn').addClass('hidden');
-					$('#practice').children('tr').children('td').find('.savebtn').addClass('hidden');
+					$('#practice').find('.editbtn').addClass('hidden');
+					$('#practice').find('.savebtn').addClass('hidden');
 				}
 			})
 			$('.eventTable').show();
 			$('.eventTable').removeClass('hidden');
 			$('.teamTable').addClass('hidden');
+			$('.playersDiv').addClass('hidden')
 		})
 	}
 })
@@ -316,17 +245,15 @@ function displayTeamEvents() {
 						$('#teamGame').append(html);
 					} else {
 						$("#teamPractice").append(html);
-						$('#practice').children('tr').children('td').find('.editbtn').addClass('hidden');
-						$('#practice').children('tr').children('td').find('.savebtn').addClass('hidden');
+						$('#teamPractice').find('.editbtn').addClass('hidden');
+						$('#teamPractice').find('.savebtn').addClass('hidden');
+
 					}
 				})
 			})
 			$('.teamTable').show();
 			$('.teamTable').removeClass('hidden');
 			$('.eventTable').addClass('hidden');
-
-
-
 		})
 	} else {
 		var code = $('#templateTeam').html();
@@ -353,15 +280,14 @@ function displayTeamEvents() {
 						$('#teamGame').append(html);
 					} else {
 						$("#teamPractice").append(html);
-						$('#practice').children('tr').children('td').find('.editbtn').addClass('hidden');
-						$('#practice').children('tr').children('td').find('.savebtn').addClass('hidden');
+						$('#teamPractice').find('.editbtn').addClass('hidden');
+						$('#teamPractice').find('.savebtn').addClass('hidden');
 					}
 				});
 			});
 			$('.teamTable').show();
 			$('.teamTable').removeClass('hidden');
 			$('.eventTable').addClass('hidden');
-
 		});
 	}
 
@@ -437,43 +363,12 @@ $('#eventSubmit').on('click', function(evt) {
 		})
 })
 
-// setting cookied
-function getCookie(name) {
-	var value = "; " + document.cookie;
-	var parts = value.split("; " + name + "=");
-	if (parts.length == 2) return parts.pop().split(";").shift();
-}
-
-// getting those cookies and displaying welcome message to the user
-if (getCookie('user_name')) {
-	var userName = getCookie('user_name')
-	if (userName !== "") {
-		var user = $('<div id="userName" class="user-name">').html('Welcome ' + userName + ' !');
-		$('.loginBtn').before(user)
-		$('.loginBtn').hide();
-		$('#signOut').show();
-	}
-}
-
-// disabling the anchor tags links if the user is not logged in and regirecting the user to login page
-var isLoggedIn = getCookie('logged_in');
-$('.getDetails').on('click', function() {
-	if (isLoggedIn === undefined || isLoggedIn === 'false') {
-		console.log(isLoggedIn)
-		alert('Please Login to view the content');
-		window.location.href = "/signin"
-		return false;
-	}
-
-});
-
-
 // calling functions
 displayGameDropdown();
 getTeams(teamDropdown);
 $(document).on('click', '.editbtn', createEditButton);
 $(document).on('click', '.savebtn', updateContent);
 $(document).on('click', '#allTeams', displayTeamEvents);
-$(document).on('click', '.teamBtn', identifyPlayerTeam)
+$(document).on('click', '.teamBtn', selectTeam)
 $('#players').on('click', displayTeamCheckbox)
 validation();
