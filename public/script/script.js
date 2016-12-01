@@ -109,7 +109,7 @@ function displayTeamEvents() {
 // functionality on click of team buttons will show all the players which belongs to that team
 function displayPlayers(evt) {
 	evt.preventDefault();
-
+	$('#teamPlayers').html('')
 	var team = $(this).text();
 	var code = $('#templatePlayers').html();
 
