@@ -1,3 +1,5 @@
+// file for user login and password
+
 var models = require('../models');
 var path = require('path');
 var express = require('express');
@@ -21,8 +23,9 @@ router.post('/login', function(req, res) {
 				// the user id to the session
 				res.cookie('logged_in', true);
 				res.cookie('user_name', user.fname);
+				res.cookie('userTeam', user.team);
 				res.json({
-					success: true
+					success: true,
 				});
 			} else {
 				res.json({
@@ -65,14 +68,27 @@ router.post('/create', function(req, res) {
 							team: req.body.team,
 							uniformNum: req.body.uniformNum
 						}
-					}).then( function() {
-						res.json({success: true})
-					}, function( err ) {
+					}).then( function(result) {
+							return models.Player.findOne({
+								where: {
+									email: req.body.email
+								}
+							})
+						}).then(function(user) {
+						// we save the logged in status to the session
+								req.session.logged_in = true;
+								res.cookie('logged_in', true);
+								// the user id to the session
+								res.cookie('user_name', user.fname);
+								res.cookie('userTeam', user.team);
+								res.json({success: true})
+
+					}), function( err ) {
 						res.json({
 							success: false,
 							error: err
 						})
-					});
+					};
 				})
 			})
 
@@ -95,11 +111,13 @@ router.post('/create', function(req, res) {
 								password: hash,
 								TeamId: teamId
 							}).then(function(user) {
+
 								// we save the logged in status to the session
 								req.session.logged_in = true;
 								res.cookie('logged_in', true);
 								// the user id to the session
 								res.cookie('user_name', user.fname);
+								res.cookie('userTeam', user.team);
 								res.json({
 									success: true
 								});
@@ -120,6 +138,7 @@ router.get('/signout', function(req, res) {
 		// res.clearCookie('cookieSid', {expires: new Date()}, {path:'/'})
 		// res.clearCookie('connect.sid');
 	res.clearCookie('user_name');
+	res.cookie('userTeam');
 	res.cookie('logged_in', false);
 	res.json({
 		logged_in: false

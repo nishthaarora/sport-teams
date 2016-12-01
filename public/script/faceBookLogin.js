@@ -58,9 +58,6 @@ function signUpModal(userId) {
     $('.modal').modal({backdrop: 'static',keyboard:false, show: true})
     $(".modal").attr('data-id', userId);
   })
-     // $('body').on('click', function(e){
-    // })
-
 }
 
 // getting values from the modal

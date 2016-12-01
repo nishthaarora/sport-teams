@@ -13,6 +13,7 @@ $('#userSignIn').on('click', function(evt) {
 	if (validateUserSignIn(existingUser)) {
 		$.post('/users/login', existingUser)
 			.done(function(response) {
+
 				if (response.success) {
 					window.location.href = '/events';
 				} else {

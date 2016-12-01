@@ -15,10 +15,6 @@
 	background: orange;
 
 }
-
-.hidden {
-	display: none;
-}
 .user-name{
 	float: right;
 	display: inline-block;
@@ -33,11 +29,18 @@
 	color: black;
 }
 
-.eventTable{
+.eventTable, .eventHeading{
 	display: none;
 }
 
-.teamTable{
+.teamTable, .teamHeading{
+	display: none;
+}
+.playerHeading, .playerTable{
+	display: none;
+}
+
+.teamsButtons{
 	display: none;
 }
 

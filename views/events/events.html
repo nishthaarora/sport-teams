@@ -50,15 +50,13 @@
 			</div>
 		</div>
 
-		<div class="playersDiv container"></div>
-
 		<!-- /header -->
 		<!-- header of the table displayed in the events route for the games table -->
 <div class="container">
-	<h1 class="eventTable">Upcoming Games</h1>
+	<h1 class="eventHeading">Upcoming Games</h1>
 <div class="row">
         <div class="col-md-12">
-            <table class="table eventTable tablesorter hidden">
+            <table class="table eventTable tablesorter">
                 <thead>
                     <tr>
 												<th>Date</th>
@@ -81,6 +79,29 @@
     </div>
 </div>
 
+<!-- table header for upcoming practices -->
+<div class="container">
+	<h1 class="eventHeading">Practice Schedule</h1>
+<div class="row">
+        <div class="col-md-12">
+            <table class="table eventTable tablesorter">
+                <thead>
+                    <tr>
+												<th>Date</th>
+												<th>Game</th>
+												<th>Start Time</th>
+												<th>End Time</th>
+												<th>Type</th>
+												<th>Location</th>
+												<th>Comment</th>
+												<th>Team1</th>
+                    </tr>
+                </thead>
+                <tbody id="practice"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
 <!-- rows for the table which will be populated on the click of dropdown menu -->
 <script id="template" type="text/html">
@@ -104,36 +125,14 @@
 					{{/each}}
 </script>
 
-<!-- table header for upcoming practices -->
-<div class="practiceContainer container">
-	<h1 class="eventTable">Practice Schedule</h1>
-<div class="row">
-        <div class="col-md-12">
-            <table class="table eventTable tablesorter hidden">
-                <thead>
-                    <tr>
-												<th>Date</th>
-												<th>Game</th>
-												<th>Start Time</th>
-												<th>End Time</th>
-												<th>Type</th>
-												<th>Location</th>
-												<th>Comment</th>
-												<th>Team1</th>
-                    </tr>
-                </thead>
-                <tbody id="practice"></tbody>
-            </table>
-        </div>
-    </div>
-</div>
+
 
 <!-- team template -->
 <div class="container">
 	<h1 class="teamTable">Upcoming Games</h1>
 <div class="row">
         <div class="col-md-12">
-            <table class="table teamTable tablesorter hidden">
+            <table class="table teamTable tablesorter">
                 <thead>
                     <tr>
 												<th>Team Name</th>
@@ -157,7 +156,7 @@
 <h1 class="teamTable">Practice Schedule</h1>
 <div class="row">
         <div class="col-md-12">
-            <table class="table teamTable tablesorter hidden">
+            <table class="table teamTable tablesorter">
                 <thead>
                     <tr>
 												<th>Team Name</th>
@@ -196,13 +195,11 @@
 
 
 		<!-- players template -->
-
-
-	<div class="container hidden players">
-<h1 class="playerTable">Players</h1>
+	<div class="container playTeam">
+<h1 class="playerHeading">Players</h1>
 <div class="row">
         <div class="col-md-12">
-            <table class="table playerTable tablesorter hidden">
+            <table class="table playerTable tablesorter">
                 <thead>
                     <tr>
 												<th>First Name</th>
@@ -231,6 +228,20 @@
 					{{/each}}
 </script>
 
+<!--creating buttons with handlebars in Team players tab to display team players and their info -->
+<div class="teamsButtons container"></div>
+	<script id="showTeamsBtn" type="text/html">
+		<!-- <div class="playersDiv container"></div> -->
+			<h1 class="teamBtnHeading">Teams</h1>
+			{{#each team}}
+			<button class="btn btn-primary active pTeam">
+			{{Team_name}}
+			</button>
+			{{/each}}
+	</script>
+
+
+		<br>
 
 		<!--Footer describing team developers -->
 		<div class="pageFooter">
@@ -249,8 +260,9 @@
 		<script type="text/javascript" src="/script/bootstrap.min.js"></script>
 		     <!-- user login js -->
     <script type="text/javascript" src="/script/userLogin.js"></script>
+    <!-- buttons js -->
+    <script type="text/javascript" src="/script/createAllButtons.js"></script>
 		<!-- js -->
-		<script type="text/javascript" src="/script/script.js">
-		</script>
+		<script type="text/javascript" src="/script/script.js"></script>
 	</body>
 </html>
