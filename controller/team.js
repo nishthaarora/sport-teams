@@ -36,8 +36,6 @@ router.get('/api/players/:team', function(req, res){
 			team: team
 		}
 	}).then(function(players){
-		allTeams = formatDateInTeams(allTeams)
-
 		return res.json(players)
 	})
 })
