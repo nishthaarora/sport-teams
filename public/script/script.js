@@ -130,33 +130,6 @@ function displayPlayers(evt) {
 	$('.playerTable').show();
 }
 
-
-
-// validation function while adding players into table which tells when to display score column and the input param for the 2nd team
-function eventsEntryFormValidation() {
-		var type = $('#eventType').val().trim()
-		var date = $('#date').val().trim()
-		var score1 = $('#score1').val().trim()
-		var score2 = $('#score2').val().trim();
-		var team1 = $('#associatedTeam').val().trim()
-		var team2 = $('#associatedTeam2').val().trim()
-		console.log(type)
-
-		if (type === 'Game' && new Date(date) < new Date()) {
-			$('#secondTeam').removeClass('hidden');
-			$('#score1').removeClass('hidden');
-			$('#score2').removeClass('hidden');
-			$('#secondTeam').attr('required', true);
-			$('#score1').attr('required', true);
-			$('#score2').attr('required', true);
-		} else {
-			$('#secondTeam').addClass('hidden');
-			$('#score1').addClass('hidden');
-			$('#score2').addClass('hidden');
-		}
-
-}
-
 // making ajax call to update data in database when user click on edit on events page and save the edited scores data
 // user can only edit past events and can only add scores in it. if all the past events are updated with scores then
 // we can see the graphs for them in stats section
@@ -178,5 +151,3 @@ function updateContent() {
 $(document).on('click', '.savebtn', updateContent);
 $(document).on('click', '.pTeam', displayPlayers)
 $(document).on('click', '#allTeams li', displayTeamEvents);
-$('#eventType').on('change', eventsEntryFormValidation)
-

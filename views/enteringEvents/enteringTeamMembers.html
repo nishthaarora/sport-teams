@@ -14,9 +14,8 @@
 		<link href="../assets/css/bootstrap-switch.min.css" rel="stylesheet">
 		<!-- internal stylesheet -->
 		<link rel="stylesheet" type="text/css" href="../assets/css/style.css">
-		    <!--Load the AJAX API-->
-    <!-- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> -->
-
+		<!--Load the AJAX API-->
+		<!-- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> -->
 	</head>
 	<body>
 		<!--Nav Bar header -->
@@ -37,22 +36,22 @@
 				<div class="container">
 					<div class="row">
 						<!-- <div class="col-md-3"> -->
-							<a class="homeLink col-md-3"  role="navigation" href="/"><span class="glyphicon glyphicon-home"></span></a>
-							  <button class="btn btn-primary events-btn"><a href="/events">Events</a></button>
-              <button class="btn btn-primary stats-btn"><a href="input">Stats</a></button>
-              <button class="btn btn-primary addevents-btn"><a href="input">Add Events</a></button>
+						<a class="homeLink col-md-3"  role="navigation" href="/"><span class="glyphicon glyphicon-home"></span></a>
+						<button class="btn btn-primary events-btn"><a href="/events">Events</a></button>
+						<button class="btn btn-primary stats-btn"><a href="input">Stats</a></button>
+						<button class="btn btn-primary addevents-btn"><a href="input">Add Events</a></button>
 					</div>
+				</div>
 			</div>
-		</div>
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12">
 						<h1>Enter Team Members</h1>
-							<form action="teams/api/addplayers" method="POST">
-									<input id="fName" type="text" name="First Name" placeholder="first name">
-									<input id="lName" type="text" name="last Name" placeholder="last name">
-									<input id="uniformNum" type="number" name="uniform" placeholder="uniform number">
-									<div class="form-group">
+						<form action="teams/api/addplayers" method="POST">
+							<input id="fName" type="text" name="First Name" placeholder="first name">
+							<input id="lName" type="text" name="last Name" placeholder="last name">
+							<input id="uniformNum" type="number" name="uniform" placeholder="uniform number">
+							<div class="form-group">
 								<label for="exampleSelect1">Team Name</label>
 								<select class="form-control" id="playerTeam" name="team">
 									<option>Blue</option>
@@ -62,37 +61,31 @@
 									<option>Purple</option>
 								</select>
 							</div>
-
-							</form>
-
-							</div>
-							<button id ="playerSubmit" type="submit" class="btn btn-primary">Submit</button>
 						</form>
 					</div>
-				</div>
+					<button id ="playerSubmit" type="submit" class="btn btn-primary">Submit</button>
+				</form>
 			</div>
-
-
-		<!--Footer describing team developers -->
-		<div class="pageFooter">
-			<div class = "container">
-			Copywrite: 2016, Made by Dream Team.  All rights reserved.</div>
-
-
 		</div>
-		<!-- jquery -->
-		<script type="text/javascript" src="/script/jquery.js"></script>
-		<!-- bootstrap Switch -->
-		<script type="text/javascript" src="/script/bootstrap-switch.min.js"></script>
-		<!-- handlebars cdn -->
-		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>
-		<!-- bootstrap stylesheet -->
-		<script type="text/javascript" src="/script/bootstrap.min.js"></script>
-		<!-- userForm js -->
-		<script type="text/javascript" src="/script/userForms.js"></script>
-		<!-- signin -->
-		<script type="text/javascript" src="/script/userLogin.js"></script>
-		<!-- js -->
-		<script type="text/javascript" src="/script/script.js"></script>
-	</body>
+	</div>
+	<!--Footer describing team developers -->
+	<div class="pageFooter">
+		<div class = "container">
+		Copywrite: 2016, Made by Dream Team.  All rights reserved.</div>
+	</div>
+	<!-- jquery -->
+	<script type="text/javascript" src="/script/jquery.js"></script>
+	<!-- bootstrap Switch -->
+	<script type="text/javascript" src="/script/bootstrap-switch.min.js"></script>
+	<!-- handlebars cdn -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>
+	<!-- bootstrap stylesheet -->
+	<script type="text/javascript" src="/script/bootstrap.min.js"></script>
+	<!-- userForm js -->
+	<script type="text/javascript" src="/script/userForms.js"></script>
+	<!-- signin -->
+	<script type="text/javascript" src="/script/userLogin.js"></script>
+	<!-- js -->
+	<script type="text/javascript" src="/script/script.js"></script>
+</body>
 </html>

@@ -53,9 +53,15 @@ function signUpModal(userId) {
   var code = $('#signup-modal').html();
   $.get('teams/api/allteams', function(data) {
     var template = Handlebars.compile(code);
-    var html = template({teams: data});
+    var html = template({
+      teams: data
+    });
     $("body").append(html);
-    $('.modal').modal({backdrop: 'static',keyboard:false, show: true})
+    $('.modal').modal({
+      backdrop: 'static',
+      keyboard: false,
+      show: true
+    })
     $(".modal").attr('data-id', userId);
   })
 }
@@ -69,22 +75,22 @@ function getModalValues() {
     id: userId
   }
 
- if(validateModalValues(info)) {
-   updatePlayersTable(info)
-   window.location.href = '/events'
+  if (validateModalValues(info)) {
+    updatePlayersTable(info)
+    window.location.href = '/events'
   } else {
     $('#teams').attr('required', "required");
     $('#uniform').attr('required', "required");
 
     return false;
- }
+  }
 }
 
 // validation modal values which user has provided
-function validateModalValues(info){
+function validateModalValues(info) {
   console.log('info', info)
   console.log(info.uniformNum)
-  if(info.uniformNum === "") {
+  if (info.uniformNum === "") {
     return false;
   } else {
     return true;

@@ -13,29 +13,27 @@
     <link href="../assets/css/bootstrap-switch.min.css" rel="stylesheet">
     <!-- internal stylesheet -->
     <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
-        <!--Load the AJAX API-->
+    <!--Load the AJAX API-->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
   </head>
-<body>
-<!--Nav Bar header -->
+  <body>
+    <!--Nav Bar header -->
     <div class="navbar navbar-static-top primaryNav" role="navigation">
       <div class="container">
-          <div class="navbar-header">
-            <a class="navbar-brand" href="/">
-              <img src="assets/images/logoName.png" alt="BringTeam">
-            </a>
-          </div>
-          <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav pull-right">
-              <li> <a href="/">Home</a></li>
-              <li><a href="/signup">Sign-up</a></li>
-            </ul>
-          </div>
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">
+            <img src="assets/images/logoName.png" alt="BringTeam">
+          </a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav pull-right">
+            <li> <a href="/">Home</a></li>
+            <li><a href="/signup">Sign-up</a></li>
+          </ul>
+        </div>
       </div>
     </div>
-
-<!--Main header announcing action of page -->
+    <!--Main header announcing action of page -->
     <div class="mainHeader">
       <div class="container">
         <div class="row">
@@ -45,118 +43,98 @@
         </div>
       </div>
     </div>
-
-<!--Sign in form -->
+    <!--Sign in form -->
     <div id="loginPage" class="container">
       <div class = "row">
         <div class="col-xs-6 col-xs-offset-3"></div>
         <div class="col-xs-6 col-xs-offset-3">
           <div class="logSite">
-
-
-	<form action="/users/login" method="POST">
-
-
-          <div class="form-group">
+            <form action="/users/login" method="POST">
+              <div class="form-group">
                 <label>Email</label>
                 <input id="userEmail" name="email" type="text" class="form-control input-lg">
-          </div>
-
-
-	        <div class="form-group">
+              </div>
+              <div class="form-group">
                 <label>Password</label>
                 <input id="userPassword" name="password" type="password" class="form-control input-lg">
-          </div>
-
-
-          <div class="form-group clearfix">
-          <button id="userSignIn" class="pull-right btn btn-success loginBtn" type="submit" data-loading-text="Log in">Log In</button>
-          <!-- fb login button -->
-          <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="false" onlogin="facebooklogin" data-scope="public_profile, email"></div>
-          <div id="fb-root"></div>
-   </form>
-
-      <!-- go to signup page -->
-    <p class="noAccount">Don't have a BringTeam account yet?
-       <a href="/signUp">Create Account</a>
-    </p>
-
-</div>
-</div>
-</div>
-</div>
-</div>
-
-<!--BringTeam Site Stats -->
-    <div class="footer-stats">
-        <div class="container">
-          <div class="row">
-            <div class="col-xs-3">
-              <span class="fact">238</span>
-              <div class="fact-name"># of teams enrolled</div>
-            </div>
-            <div class="col-xs-3">
-              <span class="fact">1,867</span>
-              <div class="fact-name"># of players</div>
-            </div>
-            <div class="col-xs-3">
-              <span class="fact">4,760</span>
-              <div class="fact-name"># of upcoming events</div>
+              </div>
+              <div class="form-group clearfix">
+                <button id="userSignIn" class="pull-right btn btn-success loginBtn" type="submit" data-loading-text="Log in">Log In</button>
+                <!-- fb login button -->
+                <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="false" onlogin="facebooklogin" data-scope="public_profile, email"></div>
+                <div id="fb-root"></div>
+              </form>
+              <!-- go to signup page -->
+              <p class="noAccount">Don't have a BringTeam account yet?
+                <a href="/signUp">Create Account</a>
+              </p>
             </div>
           </div>
         </div>
+      </div>
     </div>
-
-<!--Footer describing team developers -->
+    <!--BringTeam Site Stats -->
+    <div class="footer-stats">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-3">
+            <span class="fact">238</span>
+            <div class="fact-name"># of teams enrolled</div>
+          </div>
+          <div class="col-xs-3">
+            <span class="fact">1,867</span>
+            <div class="fact-name"># of players</div>
+          </div>
+          <div class="col-xs-3">
+            <span class="fact">4,760</span>
+            <div class="fact-name"># of upcoming events</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Footer describing team developers -->
     <div class="pageFooter">
-    <div class = "container">
+      <div class = "container">
       Copywrite: 2016, Made by Dream Team.  All rights reserved.</div>
     </div>
-
     <!-- // create modal and get more user info for players table when user signin with fbook a/c -->
-
-<script id="signup-modal" type="text/html">
-  <div class="modal fade">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Team Info</h4>
-      </div>
-      <div class="modal-body">
-          <label for="exampleSelect1">Team Name</label>
-              <select class="form-control" id="teams" name="team">
-          {{#each teams}}
+    <script id="signup-modal" type="text/html">
+    <div class="modal fade">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Team Info</h4>
+          </div>
+          <div class="modal-body">
+            <label for="exampleSelect1">Team Name</label>
+            <select class="form-control" id="teams" name="team">
+              {{#each teams}}
               <option value="{{Team_name}}">{{Team_name}}</option>
-            {{/each}}
+              {{/each}}
             </select>
             <br>
-          <p>Uniform Number<input id="uniform" type="number" name="uniformNum"></p>
-      </div>
-      <div class="modal-footer">
-        <button id="modalSubmit" type="button" class="btn btn-primary">Submit</button>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-</script>
-
-
-
-
-    <!-- jquery -->
-    <script type="text/javascript" src="/script/jquery.js"></script>
-    <!-- bootstrap Switch -->
-    <script type="text/javascript" src="/script/bootstrap-switch.min.js"></script>
-    <!-- handlebars cdn -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>
-    <!-- bootstrap stylesheet -->
-    <script type="text/javascript" src="/script/bootstrap.min.js"></script>
-    <!-- fb login js -->
-    <script type="text/javascript" src="/script/faceBookLogin.js"></script>
-     <!-- user login js -->
-    <script type="text/javascript" src="/script/userLogin.js"></script>
-    <!-- js -->
-    <script type="text/javascript" src="/script/script.js"></script>
-
-  </body>
-</html>
+            <p>Uniform Number<input id="uniform" type="number" name="uniformNum"></p>
+          </div>
+          <div class="modal-footer">
+            <button id="modalSubmit" type="button" class="btn btn-primary">Submit</button>
+          </div>
+          </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+          </div><!-- /.modal -->
+          </script>
+          <!-- jquery -->
+          <script type="text/javascript" src="/script/jquery.js"></script>
+          <!-- bootstrap Switch -->
+          <script type="text/javascript" src="/script/bootstrap-switch.min.js"></script>
+          <!-- handlebars cdn -->
+          <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>
+          <!-- bootstrap stylesheet -->
+          <script type="text/javascript" src="/script/bootstrap.min.js"></script>
+          <!-- fb login js -->
+          <script type="text/javascript" src="/script/faceBookLogin.js"></script>
+          <!-- user login js -->
+          <script type="text/javascript" src="/script/userLogin.js"></script>
+          <!-- js -->
+          <script type="text/javascript" src="/script/script.js"></script>
+        </body>
+      </html>

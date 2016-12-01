@@ -10,8 +10,8 @@ function formatDateInArray(allEvents) {
 		var m = date.getMonth() + 1;
 		var y = date.getFullYear();
 
-			var newDate = m + '-' + d + '-' + y;
-			ele.dataValues.date = newDate;
+		var newDate = m + '-' + d + '-' + y;
+		ele.dataValues.date = newDate;
 	});
 	return allEvents;
 
