@@ -4,12 +4,14 @@ var express = require('express');
 var router = express.Router();
 var Promise = require('bluebird');
 var Sequelize = require('sequelize');
+var formatDateInArray = require('./util').formatDateInArray;
 
 // to see all the existing greater than today's date events
 router.get('/api/all', function(req, res) {
 	models.Event.findAll({
 		include: [models.Team]
 	}).then(function(allEvents) {
+		allEvents = formatDateInArray(allEvents);
 		res.setHeader('Content-Type', 'application/json');
 		return res.json(allEvents);
 	});
@@ -24,6 +26,7 @@ router.get('/api/:game', function(req, res) {
 		},
 		include: [models.Team]
 	}).then(function(allEvents) {
+		allEvents = formatDateInArray(allEvents);
 		res.setHeader('Content-Type', 'application/json');
 		return res.json(allEvents)
 	})
@@ -97,6 +100,7 @@ function getTeamId(event) {
 		}
 	})
 }
+
 
 
 

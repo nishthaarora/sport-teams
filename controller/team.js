@@ -3,12 +3,14 @@ var path = require('path');
 var express = require('express');
 var router = express.Router();
 var Promise = require('bluebird');
+var formatDateInArray = require('./util').formatDateInArray;
 // function for creating dropdown for the teams menu for team related events
 router.get('/api/allteams', function(req, res) {
 		models.Team.findAll({
 			attributes: ['id', 'Team_name'],
 			include: [models.Event]
 		}).then(function(allTeams) {
+			allTeams = formatDateInArray(allTeams)
 			return res.json(allTeams)
 		});
 	})
@@ -21,6 +23,7 @@ router.get('/api/:team', function(req, res) {
 			},
 			include: [models.Event]
 		}).then(function(allTeams) {
+			allTeams = formatDateInArray(allTeams)
 			return res.json(allTeams)
 		});
 	})
@@ -33,6 +36,7 @@ router.get('/api/players/:team', function(req, res){
 			team: team
 		}
 	}).then(function(players){
+		players = formatDateInArray(players)
 		return res.json(players)
 	})
 })

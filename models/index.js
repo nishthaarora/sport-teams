@@ -39,3 +39,4 @@ module.exports = db;
 // export NODE_ENV='production'
 // used to run migration in production
 // sequelize db:migrate --prod
+
