@@ -16,6 +16,7 @@ function signIn(req, res) {
 			req.session.logged_in = true;
 			res.cookie('logged_in', true);
 			res.cookie('user_name', req.body.fname);
+			res.cookie('userTeam', user.team);
 			res.json({
 				success: true
 			})
@@ -37,6 +38,7 @@ function signUp(req, res) {
 		req.session.logged_in = true;
 		res.cookie('logged_in', true);
 		res.cookie('user_name', req.body.fname);
+		// res.cookie('userTeam', user.team);
 		res.json({
 			success: true,
 			new: true,
@@ -45,7 +47,7 @@ function signUp(req, res) {
 	})
 }
 
-// updating table with user info in sequelize
+// updating table with user info in sequelize when user enter info in modal at the time of signup
 function updateTable(req, res) {
 	findTeamInTeamTable(req.body.team)
 		.then(function(data) {
@@ -64,6 +66,12 @@ function updateTable(req, res) {
 				}
 			})
 		})
+				res.cookie('userTeam', req.body.team);
+				res.json({
+				success: true,
+				new: true
+		})
+
 }
 
 // finding team id to fill in sequelize player table

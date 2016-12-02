@@ -31,7 +31,6 @@ $('.teamDropdown1 li a').click(function(evt) {
 	$('.team1:first-child').text($(this).text())
 	$('.team1:first-child').val($(this).text());
 	getEventsForSelectedTeams()
-		// console.log(team1)
 })
 
 

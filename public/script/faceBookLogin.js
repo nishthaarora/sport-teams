@@ -88,8 +88,6 @@ function getModalValues() {
 
 // validation modal values which user has provided
 function validateModalValues(info) {
-  console.log('info', info)
-  console.log(info.uniformNum)
   if (info.uniformNum === "") {
     return false;
   } else {

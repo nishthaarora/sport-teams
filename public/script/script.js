@@ -1,5 +1,6 @@
 // this file is making all the api calls
 
+
 /* Events route has a dropdown with which user can see the events which are upcoming in the form of a 2 different
 tables by selecting the game or "all events" from the dropdown menu
 */
@@ -62,6 +63,14 @@ function setDefaultLayout() {
 	displayTeamEvents(uTeam);
 }
 
+// function stats() {
+// 	$.get('events/api/eventCount', function(eventStats) {
+// 		console.log(eventStats);
+// 	})
+// }
+
+// stats()
+
 // making an api call to retrive team related data and displaying it in tables format
 // uteam is coming from setDefaultLayout()function which is fetching userTeam cookie
 function displayTeamEvents(uTeam) {
@@ -69,6 +78,7 @@ function displayTeamEvents(uTeam) {
 	var teamEventsEndpoint = 'teams/api/';
 	var userTeam = getCookie('userTeam');
 	var code = $('#templateTeam').html();
+
 	if (typeof uTeam === 'string') {
 		team = uTeam;
 	}
@@ -81,37 +91,39 @@ function displayTeamEvents(uTeam) {
 	$("#teamGame").html('');
 	$("#teamPractice").html('');
 
-	$.get(teamEventsEndpoint, function(eventData) {
-		var template = Handlebars.compile(code);
-		eventData.forEach(function(ele) {
-			ele.Events.forEach(function(teamEvent) {
+	if (code) {
+		$.get(teamEventsEndpoint, function(eventData) {
+			var template = Handlebars.compile(code);
+			eventData.forEach(function(ele) {
+				ele.Events.forEach(function(teamEvent) {
 
-				var data = $.extend({}, {
-					"Team_name": ele.Team_name
-				}, teamEvent);
+					var data = $.extend({}, {
+						"Team_name": ele.Team_name
+					}, teamEvent);
 
-				var html = template({
-					events: [data]
-				})
-				if (teamEvent.type === 'Game') {
-					$('#teamGame').append(html);
-				} else {
-					$("#teamPractice").append(html);
-					$('#teamPractice').find('.editbtn').addClass('hidden');
-					$('#teamPractice').find('.savebtn').addClass('hidden');
+					var html = template({
+						events: [data]
+					})
+					if (teamEvent.type === 'Game') {
+						$('#teamGame').append(html);
+					} else {
+						$("#teamPractice").append(html);
+						$('#teamPractice').find('.editbtn').addClass('hidden');
+						$('#teamPractice').find('.savebtn').addClass('hidden');
 
-				}
+					}
+				});
 			});
+			$('.teamHeading').show();
+			$('.teamTable').show();
+			$('.eventHeading').hide()
+			$('.eventTable').hide()
+			$('.playerHeading').hide();
+			$('.playerTable').hide()
+			$('.teamBtnHeading').hide();
+			$('.teamsButtons').hide();
 		});
-		$('.teamHeading').show();
-		$('.teamTable').show();
-		$('.eventHeading').hide()
-		$('.eventTable').hide()
-		$('.playerHeading').hide();
-		$('.playerTable').hide()
-		$('.teamBtnHeading').hide();
-		$('.teamsButtons').hide();
-	});
+	}
 }
 
 // functionality on click of team buttons will show all the players which belongs to that team
@@ -122,7 +134,7 @@ function displayPlayers(uTeam) {
 	var team = $(this).text();
 	var code = $('#templatePlayers').html();
 
-	if(typeof uTeam === 'string') {
+	if (typeof uTeam === 'string') {
 		team = uTeam
 	}
 

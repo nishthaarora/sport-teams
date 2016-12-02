@@ -51,6 +51,20 @@ router.post('/api/update/:id', function(req, res) {
 })
 
 
+// count query
+
+// router.get('api/eventCount', function(req, res) {
+// 	return models.Event.count({
+// 		where: {
+// 			id: distinct
+// 		}
+// 	})
+// 	.then(function(err, count){
+// 		console.log('count', count)
+// 	})
+// })
+
+
 /* Taking user inputs from the input route and creating sql database for events
 	 using blueBird promises getting the param @data from function getTeamId(), looping through response
 		and creating the events further finding the event respective to the the team
